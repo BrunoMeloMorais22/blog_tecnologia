@@ -1,0 +1,112 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Changa+One:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montenegrin+Gothic+One&family=Nabla&family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/telacadastro.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 230px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form-container {
+    margin: right;
+    width: 400px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.input-group input {
+    width: 100%;
+    padding: 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background: #e8e8e8;
+}
+
+.links-extras > a{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.links-extras > a{
+    color: white;
+    text-decoration: none;
+}
+
+.links-extras > a:hover{
+    text-decoration: underline;
+}

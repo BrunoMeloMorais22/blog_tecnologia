@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Black+Ops+One&family=Changa+One:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montenegrin+Gothic+One&family=Nabla&family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
+
+#hero {
+    display: flex;
+    color: white;
+    background: #020924;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+
+#navegacao {
+    display: flex;
+    font-size: 17px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#navegacao > a{
+    color: white;
+    text-decoration: none;
+}
+
+#navegacao > a:hover{
+    text-decoration: underline;
+}
+
+#botoes {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#botoes > a{
+    color: white;
+    text-decoration: none;
+}
+
+#botoes > a:hover {
+    text-decoration: underline;
+    font-size: 17px;
+}
+
+hr{
+    color: #020924;
+}
+#introducao {
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/telacadastro.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 100px;
+}
+
+#titulo {
+    width: 500px;
+    color: white;
+    text-align: right;
+}
+
+#titulo h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+#titulo p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+#calltoaction {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+#calltoaction > button{
+    padding: 12px;
+    background: blue;
+    border-radius: 10px;
+    border: 2px;
+    color: white;
+}
+
+
+
+

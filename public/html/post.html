@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/criarpost.css">
+</head>
+<body>
+<section id="criar-post">
+    <div class="cabecalho-post">
+        <span>Nova publicação</span>
+        <h1>Compartilhe uma ideia.</h1>
+        <p>
+            Transforme seu conhecimento em uma publicação.
+        </p>
+    </div>
+
+    <form id="postFormulario">
+
+        <div class="campo">
+            <label for="titulo">Título</label>
+            <input 
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Digite o título da publicação"
+            >
+        </div>
+
+        <div class="campo">
+            <label for="descricao">Descrição</label>
+            <textarea
+                id="descricao"
+                name="descricao"
+                placeholder="Escreva sobre o que você quer compartilhar..."
+            ></textarea>
+        </div>
+
+        <div class="campo">
+            <label for="imagem">Imagem de capa</label>
+
+            <label for="imagem" class="upload-imagem">
+                <span>📷</span>
+                <strong>Escolha uma imagem</strong>
+                <small>PNG, JPG ou JPEG</small>
+            </label>
+
+            <input 
+                type="file"
+                id="imagem"
+                name="imagem"
+                accept="image/png, image/jpeg"
+            >
+        </div>
+
+        <button type="submit">
+            Publicar publicação
+        </button>
+
+        <div id="mensagem"></div>
+    </form>
+
+    <script src="../js/post.js"></script>
+</section>
+</body>
+</html>

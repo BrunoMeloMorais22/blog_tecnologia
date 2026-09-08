@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Changa+One:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montenegrin+Gothic+One&family=Nabla&family=Roboto+Slab:wght@100..900&display=swap');
+
+body {
+    min-height: 100vh;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/telacadastro.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 230px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#criar-post {
+    width: 90%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(15px);
+    max-width: 760px;
+    margin-top: 40px;
+    padding: 0 25px;
+}
+
+.cabecalho-post {
+    margin-bottom: 40px;
+}
+
+.cabecalho-post span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.cabecalho-post h1 {
+    margin: 8px 0;
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+}
+
+.cabecalho-post p {
+    margin: 0;
+    font-size: 16px;
+    color: white;
+}
+
+#postFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.campo label {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+
+.campo input[type="text"],
+.campo textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 16px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,box-shadow 0.2s ease;
+}
+
+.campo input[type="text"] {
+    height: 52px;
+}
+
+.campo textarea {
+    min-height: 220px;
+    resize: vertical;
+    line-height: 1.6;
+}
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #9ca3af;
+}
+.campo input[type="text"]:focus,
+.campo textarea:focus {
+    border-color: #6366f1;
+
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+#imagem {
+    display: none;
+}
+
+.upload-imagem {
+    width: 100%;
+    min-height: 180px;
+
+    box-sizing: border-box;
+
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    background-color: #fafafa;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.upload-imagem:hover {
+    border-color: #6366f1;
+    background-color: #f5f5ff;
+}
+
+.upload-imagem span {
+    font-size: 32px;
+}
+
+.upload-imagem strong {
+    font-size: 15px;
+    color: #374151;
+}
+
+.upload-imagem small {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+#postFormulario button {
+    height: 52px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #6366f1;
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+#postFormulario button:hover {
+    background-color: #4f46e5;
+}
+
+#postFormulario button:active {
+    transform: scale(0.99);
+}
+
+
+@media (max-width: 600px) {
+
+    #criar-post {
+        margin: 40px auto;
+        padding: 0 18px;
+    }
+
+    .cabecalho-post h1 {
+        font-size: 30px;
+    }
+
+    .cabecalho-post p {
+        font-size: 15px;
+    }
+
+    .upload-imagem {
+        min-height: 150px;
+    }
+}
