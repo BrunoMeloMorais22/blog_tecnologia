@@ -26,3 +26,16 @@ exports.criarPost = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.pegarPosts = async(req, res, next) => {
+    try{
+        const result = await postService.pegarPosts()
+
+        res.status(200).json({
+            success: true,
+            data: result
+        })
+    } catch(error) {
+        next(error)
+    }
+}   

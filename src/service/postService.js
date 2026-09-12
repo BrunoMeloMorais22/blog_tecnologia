@@ -19,3 +19,9 @@ exports.criarPost = async(titulo, descricao, imagem, usuarioId) => {
         id: post.id
     }
 }
+
+exports.pegarPosts = async() => {
+    const posts = await postRepository.getPosts()
+
+    return posts
+}

@@ -7,3 +7,7 @@ exports.criarPost = async(data) => {
         data
     })
 }
+
+exports.getPosts = async() => {
+    return await prisma.publicacao.findMany()
+}
