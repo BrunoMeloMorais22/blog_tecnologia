@@ -267,9 +267,6 @@ button > a {
 }
 
 
-/* =========================
-   RESPONSIVO
-========================= */
 
 @media (max-width: 768px) {
 
@@ -300,3 +297,82 @@ button > a {
 }
 
 
+.comentarios {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.comentarios {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.comentarios input {
+    flex: 1;
+    padding: 11px 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+    color: #0f172a;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.comentarios input::placeholder {
+    color: #94a3b8;
+}
+
+.comentarios input:focus {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.comentarios button {
+    border: none;
+    border-radius: 20px;
+
+    padding: 10px 18px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.comentarios button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+[id^="lista-comentarios-"] {
+    margin-top: 14px;
+}
+
+[id^="lista-comentarios-"] p {
+    background: #f1f5f9;
+
+    padding: 10px 14px;
+    margin: 8px 0;
+
+    border-radius: 12px;
+
+    color: #334155;
+    font-size: 14px;
+
+    word-break: break-word;
+}

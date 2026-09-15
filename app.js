@@ -15,14 +15,11 @@ app.use("/upload", express.static(path.join(__dirname, "src", "upload")))
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
 
+
 app.use(errorHandler)
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/index.html"))
-})
-
-app.get('/teste-erro', () => {
-    throw new Error('Erro de teste do blog')
 })
 
 app.get("/cadastro", (req, res) => {

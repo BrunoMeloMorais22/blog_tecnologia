@@ -5,8 +5,6 @@ const { registerSchema } = require('../validator/userValidator')
 exports.createUser = async(req, res, next) => {
     try{
 
-        registerSchema.parse(req.body)
-
         const { nome, email, senha, telefone } = req.body
 
         const result = await userService.createUser(

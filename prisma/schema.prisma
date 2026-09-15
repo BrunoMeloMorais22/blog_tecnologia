@@ -15,6 +15,7 @@ model Usuario {
   telefone String
 
   publicacao Publicacao[]
+  comentarios Comentario[]
 }
 
 model Publicacao {
@@ -26,5 +27,18 @@ model Publicacao {
   usuarioId Int
 
   usuario Usuario @relation(fields: [usuarioId], references: [id])
+  comentarios Comentario[]
 
+}
+
+model Comentario {
+  id Int @id @default(autoincrement())
+  mensagem String
+  criadoEm DateTime @default(now())
+
+  postId Int
+  usuarioId Int
+
+  post Publicacao @relation(fields: [postId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
 }
