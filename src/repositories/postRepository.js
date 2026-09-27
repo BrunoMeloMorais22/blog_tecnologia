@@ -11,3 +11,31 @@ exports.criarPost = async(data) => {
 exports.getPosts = async() => {
     return await prisma.publicacao.findMany()
 }
+
+exports.buscarPorId = async (publicacaoId) => {
+    return await prisma.publicacao.findUnique({
+        where: {
+            id: publicacaoId
+        }
+    })
+}
+
+exports.editarPost = async (publicacaoId, descricao) => {
+    return await prisma.publicacao.update({
+        where: {
+            id: publicacaoId
+        },
+
+        data: {
+            descricao: descricao
+        }
+    })
+}
+
+exports.deletarPost = async(publicacaoId) => {
+    return await prisma.publicacao.delete({
+        where: {
+            id: publicacaoId
+        }
+    })
+}

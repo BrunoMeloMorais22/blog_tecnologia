@@ -64,7 +64,7 @@ exports.loginUser = async(email, senha) => {
             expiresIn: '1d'
         }
     )
-
+    
     logger.info('LOGIN_SUCCESS', {
         userId: usuario.id,
         email: usuario.email
