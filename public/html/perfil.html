@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu perfil | DevBlog</title>
+
+    <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+
+    <main class="pagina-perfil">
+        <header class="cabecalho">
+            <div>
+                <h1>Meu perfil</h1>
+                <p>Gerencie suas informações e acompanhe sua atividade</p>
+            </div>
+
+            <button class="botao-editar" onclick="editarPerfil()">✎ Editar perfil</button>
+        </header>
+        <div class="layout-perfil">
+
+            <div class="coluna-principal">
+
+                <section class="card perfil-card">
+
+                    <div class="banner-perfil"></div>
+
+                    <div class="dados-perfil">
+
+                        <div class="avatar-container">
+                            <img
+                                src="../img/fundojpg.jpg"
+                                alt="Foto do perfil"
+                                class="avatar"
+                            >
+                            <span class="status-online"></span>
+                        </div>
+
+                        <div class="perfil-texto">
+                            <h2>Desenvolvedor</h2>
+                            <a href="#">@desenvolvedor.dev</a>
+
+                            <p>
+                                Apaixonado por tecnologia, café e código limpo.
+                                Compartilho conhecimento sobre desenvolvimento,
+                                boas práticas e ferramentas que uso no dia a dia.
+                            </p>
+
+                            <div class="perfil-meta">
+                                <span>▣ Membro desde jan. 2024</span>
+                                <span>⌖ Brasil</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="estatisticas">
+
+                        <div class="estatistica">
+                            <span class="estatistica-icone">▤</span>
+                            <div>
+                                <strong>24</strong>
+                                <span>Posts</span>
+                            </div>
+                        </div>
+
+                        <div class="estatistica">
+                            <span class="estatistica-icone">◎</span>
+                            <div>
+                                <strong>1.2k</strong>
+                                <span>Visualizações</span>
+                            </div>
+                        </div>
+
+                        <div class="estatistica">
+                            <span class="estatistica-icone">♡</span>
+                            <div>
+                                <strong>312</strong>
+                                <span>Curtidas</span>
+                            </div>
+                        </div>
+
+                        <div class="estatistica">
+                            <span class="estatistica-icone">▢</span>
+                            <div>
+                                <strong>178</strong>
+                                <span>Comentários</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+    
+                <section class="card posts-card"> 
+
+                </section>
+
+            </div>
+
+
+            <aside class="coluna-lateral">
+
+                <section class="card sobre-card" contenteditable="true">
+                    <h2>Sobre mim</h2>
+
+                    <div class="informacao-item">
+                        <span class="info-icone">♙</span>
+                        <div>
+                            <span >Nome</span>
+                            <strong>Desenvolvedor</strong>
+                        </div>
+                    </div>
+
+                    <div class="informacao-item">
+                        <span class="info-icone">✉</span>
+                        <div>
+                            <span >Email</span>
+                            <strong>dev@email.com</strong>
+                        </div>
+                    </div>
+
+                    <div class="informacao-item">
+                        <span class="info-icone">⌖</span>
+                        <div>
+                            <span>Localização</span>
+                            <strong>Brasil</strong>
+                        </div>
+                    </div>
+
+                    <div class="informacao-item">
+                        <span class="info-icone">↗</span>
+                        <div>
+                            <span>Website</span>
+                            <strong>devblog.com</strong>
+                        </div>
+                    </div>
+
+                    <div class="informacao-item">
+                        <span class="info-icone">◉</span>
+                        <div>
+                            <span>GitHub</span>
+                            <strong>github.com/desenvolvedor</strong>
+                        </div>
+                    </div>
+                </section>
+
+
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</body>
+<script src="../js/perfil.js"></script>
+</html>

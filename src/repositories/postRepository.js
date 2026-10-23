@@ -1,12 +1,26 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+exports.criarPost = async (data) => {
+    return await prisma.$transaction(async (tx) => {
+        const post = await tx.publicacao.create({
+            data
+        })
 
-exports.criarPost = async(data) => {
-    return await prisma.publicacao.create({
-        data
+        await tx.outbox.create({
+            data: {
+                tipoEvento: "PublicacaoCriada",
+                dados: {
+                    publicacaoId: post.id,
+                    titulo: post.titulo,
+                    usuarioId: post.usuarioId
+                }
+            }
+        })
+
+        return post
     })
-}
+} 
 
 exports.getPosts = async() => {
     return await prisma.publicacao.findMany()

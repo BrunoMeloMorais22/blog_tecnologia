@@ -35,6 +35,32 @@ function habilitarEdicao(publicacaoId) {
     botao.onclick = () => editar_post(publicacaoId)
 }
 
+async function deletar_post(publicacaoId) {
+    const confirmar = confirm("Tem certeza que deseja deletar este post?");
+
+    if (!confirmar) return;
+
+    const response = await fetch(
+        `${API_URL}/posts/deletar_post/${publicacaoId}`,
+        {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+    );
+
+    const resultado = await response.json();
+
+    if (!response.ok) {
+        alert(resultado.error || "Erro ao deletar o post.");
+        return;
+    }
+
+    alert("Post deletado com sucesso!");
+
+    await carregarPost();
+}
 
 async function editar_post(publicacaoId) {
 
@@ -75,60 +101,141 @@ async function editar_post(publicacaoId) {
 
 }
 
+async function abrirMenu(event, id) {
+    event.stopPropagation()
+    
+    const menu = document.getElementById(`menu-${id}`)
+
+    document.querySelectorAll(".menu-opcoes").forEach(item => {
+        if(item !== menu){
+            item.classList.remove("ativo")
+        }
+    })
+
+    menu.classList.toggle("ativo")
+}
+
+document.addEventListener("click", (event) => {
+    if(!event.target.closest("menu-container")){
+        document.querySelectorAll(".menu-opcoes").forEach(menu => {
+            menu.classList.remove("ativo")
+        })
+    }
+})
+
+
+function obterUsuarioLogado() {
+    if (!token) return null;
+
+    try {
+        const parteToken = token.split(".")[1]
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+
+        const payload = JSON.parse(atob(parteToken));
+
+        return payload.id ?? null;
+    } catch (erro) {
+        console.error("Não foi possível ler o token:", erro);
+        return null;
+    }
+}
+
+const usuarioLogadoId = obterUsuarioLogado();
 
 async function carregarPost() {
-    const response = await fetch(`${API_URL}/posts/pegar_posts`)
-
-    const resultado = await response.json()
-
-    const container = document.getElementById("cards")
+    const response = await fetch(`${API_URL}/posts/pegar_posts`);
+    const resultado = await response.json();
+    const container = document.getElementById("cards");
 
     container.innerHTML = "";
 
     resultado.data.forEach(publicacao => {
-    container.innerHTML += `
-        <div class="card">
+        const donoDoPost =
+            usuarioLogadoId !== null &&
+            Number(publicacao.usuarioId) === Number(usuarioLogadoId);
 
-            <img src="${API_URL}/upload/${publicacao.imagem}">
+        container.innerHTML += `
+            <div class="card">
 
-            <h3>${publicacao.titulo}</h3>
+                ${donoDoPost ? `
+                    <div class="menu-container">
+                        <button
+                            class="menu-btn"
+                            onclick="abrirMenu(event, ${publicacao.id})"
+                        >
+                            ⋮
+                        </button>
 
-            <div>
-                <button id="editar-${publicacao.id}" onclick="habilitarEdicao(${publicacao.id})">Editar Post</button>
-                <button onclick="deletar_post(${publicacao.id})">Deletar Post</button>
-            </div>
+                        <div
+                            class="menu-opcoes"
+                            id="menu-${publicacao.id}"
+                        >
+                            <button
+                                id="editar-${publicacao.id}"
+                                onclick="habilitarEdicao(${publicacao.id})"
+                            >
+                                ✏️ Editar Post
+                            </button>
 
-            <p id="descricao-${publicacao.id}">
-                ${publicacao.descricao}
-            </p>
+                            <button
+                                onclick="deletar_post(${publicacao.id})"
+                            >
+                                🗑️ Deletar Post
+                            </button>
+                        </div>
+                    </div>
+                ` : ""}
 
-            <div class="card-acoes">
-                <button>♡ Curtir</button>
+                <img src="${API_URL}/upload/${publicacao.imagem}">
 
-                <button onclick="abrirComentarios(${publicacao.id})">
-                    <i class="fa-solid fa-comment"></i>
-                    COMENTAR
-                </button>
-            </div>
+                <h3>${publicacao.titulo}</h3>
 
-            <div
-                class="comentarios"
-                id="comentarios-${publicacao.id}"
-                style="display: none;"
-            >
-                <input
-                    type="text"
-                    id="comentario-${publicacao.id}"
-                    placeholder="Digite um comentário..."
+                <p id="descricao-${publicacao.id}">
+                    ${publicacao.descricao}
+                </p>
+
+                <div class="card-acoes">
+                    <button>♡ Curtir</button>
+
+                    <button onclick="abrirComentarios(${publicacao.id})">
+                        <i class="fa-solid fa-comment"></i>
+                        COMENTAR
+                    </button>
+                </div>
+
+                <div
+                    class="comentarios"
+                    id="comentarios-${publicacao.id}"
+                    style="display: none;"
                 >
+                    <input
+                        type="text"
+                        id="comentario-${publicacao.id}"
+                        placeholder="Digite um comentário..."
+                    >
 
-                <button onclick="enviarComentario(${publicacao.id})">Comentar</button>
+                    <button onclick="enviarComentario(${publicacao.id})">
+                        Comentar
+                    </button>
+                </div>
+
+                <div id="lista-comentarios-${publicacao.id}"></div>
+
             </div>
-            <div id="lista-comentarios-${publicacao.id}"></div>
-        </div>
-    `
-});
-
+        `;
+    });
 }
+
 carregarPost()
 
+function abrirFechar() {
+    const sidebar = document.querySelector(".sidebar");
+    const botao = document.getElementById("botaoMenu");
+
+    sidebar.classList.toggle("fechada");
+
+    const fechada = sidebar.classList.contains("fechada");
+
+    botao.style.display = fechada ? "block" : "none";
+}

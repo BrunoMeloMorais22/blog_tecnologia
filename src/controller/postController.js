@@ -86,23 +86,3 @@ exports.deletarPost = async (req, res, next) => {
     }
 }
 
-exports.deletarPost = async (req, res, next) => {
-    try {
-        const publicacaoId = Number(req.params.id)
-        const usuarioId = req.usuario.id
-
-        const result = await postService.deletarPost(
-            publicacaoId,
-            usuarioId
-        )
-
-        return res.status(200).json({
-            success: true,
-            message: "Publicação deletada com sucesso!",
-            data: result
-        })
-
-    } catch (error) {
-        next(error)
-    }
-}

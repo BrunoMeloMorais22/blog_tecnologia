@@ -13,3 +13,11 @@ exports.create = async(data) => {
         data
     })
 }
+
+exports.findPostsByUserId = async(usuarioId) => {
+    return await prisma.publicacao.findMany({
+        where: {
+            usuarioId: usuarioId
+        }
+    })
+}

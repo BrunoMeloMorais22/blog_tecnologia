@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma skills sync || exit 0",
+    "publicador": "node publicador.js",
+    "consumer": "node consumer.js",
+    "dev:mensageria": "concurrently -k -n API,PUBLICADOR,CONSUMER \"npm run start\" \"npm run publicador\" \"npm run consumer\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "amqplib": "^2.2.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -25,5 +29,8 @@
     "socket.io": "^4.8.3",
     "winston": "^3.19.0",
     "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
   }
 }

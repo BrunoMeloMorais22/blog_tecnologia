@@ -30,6 +30,9 @@ app.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/login.html"))
 })
 
+app.get("/perfil", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/html/perfil.html"))
+})
 app.get("/criar_post", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/post.html"))
 })

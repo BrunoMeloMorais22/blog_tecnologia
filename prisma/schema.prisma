@@ -8,37 +8,61 @@ datasource db {
 }
 
 model Usuario {
-  id       Int    @id @default(autoincrement())
-  nome     String
-  email    String @unique
-  senha    String
-  telefone String
-
-  publicacao Publicacao[]
+  id          Int          @id @default(autoincrement())
+  nome        String
+  email       String       @unique
+  senha       String
+  telefone    String
   comentarios Comentario[]
+  publicacao  Publicacao[]
 }
 
+model Outbox {
+  id String @id @default(uuid())
+  tipoEvento String
+  dados Json
+  status String @default("PENDENTE")
+  criadoEm DateTime @default(now())
+  publicadoEm DateTime?
+  tentativas Int @default(0)
+  erro String?
+}
+
+
+model EventoProcessado {
+  eventId      String   @id
+  tipoEvento   String
+  processadoEm DateTime @default(now())
+}
+
+model FalhaMensageria {
+  id             String   @id @default(uuid())
+  eventId        String
+  tipoEvento     String
+  mensagemErro   String
+  tentativas     Int
+  payload        Json
+  criadoEm       DateTime @default(now())
+}
+
+
 model Publicacao {
-  id Int @id @default(autoincrement())
-  titulo String
-  descricao String
-  imagem String?
-
-  usuarioId Int
-
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  id          Int          @id @default(autoincrement())
+  titulo      String
+  descricao   String
+  imagem      String?
+  usuarioId   Int
+  criadoEm       DateTime @default(now())
   comentarios Comentario[]
-
+  usuario     Usuario      @relation(fields: [usuarioId], references: [id])
 }
 
 model Comentario {
-  id Int @id @default(autoincrement())
-  mensagem String
-  criadoEm DateTime @default(now())
-
-  postId Int
+  id        Int        @id @default(autoincrement())
+  mensagem  String
+  criadoEm  DateTime   @default(now())
+  postId    Int
   usuarioId Int
-
-  post Publicacao @relation(fields: [postId], references: [id])
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  post      Publicacao @relation(fields: [postId], references: [id])
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id])
 }

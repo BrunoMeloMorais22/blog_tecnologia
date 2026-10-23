@@ -76,3 +76,9 @@ exports.loginUser = async(email, senha) => {
     }
 
 }
+
+exports.perfilPosts = async(usuarioId) => {
+    const pegarPosts = await userRepository.findPostsByUserId(usuarioId)
+
+    return pegarPosts
+}

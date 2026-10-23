@@ -1,3 +1,4 @@
+const { success } = require('zod')
 const userService = require('../service/userService')
 const AppError = require('../utils/AppError')
 const { registerSchema } = require('../validator/userValidator')
@@ -42,5 +43,24 @@ exports.loginUser = async(req, res, next) => {
 
     catch(error) {
         next(error)
+    }
+}
+
+exports.perfilPosts = async(req, res, next) => {
+    try{
+        const usuarioId = req.usuario.id
+
+        const result = await userService.perfilPosts(
+            usuarioId
+        )
+
+        res.status(200).json({
+            success: true,
+            data: result
+        })
+    }
+
+    catch(erro){
+        next(erro)
     }
 }
