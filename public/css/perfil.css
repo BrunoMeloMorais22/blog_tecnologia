@@ -1,12 +1,16 @@
 
-/* =========================
-   CONFIGURAÇÕES GERAIS
-========================= */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Black+Ops+One&family=Changa+One:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montenegrin+Gothic+One&family=Nabla&family=Roboto+Slab:wght@100..900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
 }
 
 :root {
@@ -42,19 +46,11 @@ button {
     cursor: pointer;
 }
 
-/* =========================
-   CONTEÚDO DA PÁGINA
-========================= */
-
 .pagina-perfil {
     max-width: 1500px;
     margin: 0 auto;
     padding: 24px;
 }
-
-/* =========================
-   CABEÇALHO
-========================= */
 
 .cabecalho {
     display: flex;
@@ -71,8 +67,11 @@ button {
 }
 
 .cabecalho p {
-    color: var(--texto-secundario);
-    font-size: 13px;
+    font-size: 17px;
+}
+
+#descricao{
+    color: rgb(255, 255, 255);
 }
 
 .botao-editar {
@@ -89,6 +88,44 @@ button {
 .botao-editar:hover {
     background: #6366f1;
 }
+
+
+#inputNome,
+#inputEmail,
+#inputDescricao {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+
+    background-color: #f8fafc;
+    color: #1e293b;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-family: inherit;
+
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+}
+
+#inputNome:hover,
+#inputEmail:hover,
+#inputDescricao:hover {
+    border-color: #94a3b8;
+}
+
+#inputNome:focus,
+#inputEmail:focus,
+#inputDescricao:focus {
+    background-color: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
 
 .layout-perfil {
     display: grid;
@@ -359,9 +396,47 @@ button {
    LISTA DE POSTS
 ========================= */
 
+
+/* Seção das publicações */
 .posts-card {
-    padding-top: 20px;
+    padding: 20px 0;
 }
+
+/* Cada publicação */
+.post-card {
+    padding: 16px 20px;
+    border-top: 1px solid var(--borda);
+    min-width: 0;
+}
+
+/* Título */
+.post-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+/* Descrição */
+.post-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    margin: 0 0 12px;
+    overflow-wrap: anywhere;
+}
+
+/* Imagem da publicação */
+.post-card img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-top: 12px;
+}
+
 
 .posts-card > .secao-cabecalho {
     padding: 0 20px 18px;
@@ -376,18 +451,9 @@ button {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    padding: 16px 20px;
+    padding: 14px 20px;
     border-top: 1px solid var(--borda);
     min-width: 0;
-}
-
-.post-imagem {
-    width: 125px;
-    height: 100px;
-    object-fit: cover;
-    flex-shrink: 0;
-    border-radius: 6px;
-    background: #273449;
 }
 
 .post-conteudo {
@@ -427,11 +493,6 @@ button {
     color: #a5b4fc;
 }
 
-.post-conteudo > p {
-    font-size: 11px;
-    line-height: 1.6;
-    margin-bottom: 8px;
-}
 
 .post-meta {
     display: flex;
@@ -504,121 +565,15 @@ button {
     overflow-wrap: anywhere;
 }
 
-/* =========================
-   ESTATÍSTICAS LATERAIS
-========================= */
-
-.atividade-card .secao-cabecalho {
-    margin-bottom: 12px;
-}
-
-.atividade-card select {
-    background: var(--card-secundario);
-    color: var(--texto);
-    border: 1px solid var(--borda);
-    border-radius: 5px;
-    padding: 6px 8px;
-    font-size: 10px;
-    max-width: 110px;
-}
-
-.grafico {
-    width: 100%;
-    margin: 10px 0 18px;
-}
-
-.grafico svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-}
-
-.resumo-estatistica {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 14px;
-}
-
-.resumo-estatistica strong {
-    font-size: 16px;
-}
-
-.resumo-estatistica > span {
-    color: var(--texto-secundario);
-    font-size: 11px;
-}
-
-.resumo-estatistica .crescimento {
-    color: #4ade80;
-    margin-left: auto;
-}
 
 .resumo-estatistica .queda {
     color: #f87171;
     margin-left: auto;
 }
 
-/* =========================
-   CONQUISTAS
-========================= */
 
-.conquista-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
 
-.conquista-item:last-child {
-    margin-bottom: 0;
-}
 
-.conquista-icone {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: white;
-    border-radius: 7px;
-    font-size: 19px;
-}
-
-.conquista-icone.roxo {
-    background: #8b5cf6;
-}
-
-.conquista-icone.azul {
-    background: #3b82f6;
-}
-
-.conquista-icone.verde {
-    background: #16a34a;
-}
-
-.conquista-item div:last-child {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.conquista-item strong {
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.conquista-item span {
-    font-size: 11px;
-    color: var(--texto-secundario);
-}
-
-/* =========================
-   TABLETS
-========================= */
 
 @media (max-width: 1000px) {
     .pagina-perfil {
@@ -667,9 +622,6 @@ button {
     }
 }
 
-/* =========================
-   CELULARES
-========================= */
 
 @media (max-width: 700px) {
     .pagina-perfil {
@@ -761,10 +713,6 @@ button {
         gap: 8px;
     }
 }
-
-/* =========================
-   CELULARES PEQUENOS
-========================= */
 
 @media (max-width: 400px) {
     .cabecalho {

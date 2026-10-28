@@ -7,14 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  USER 
+}
+
 model Usuario {
   id          Int          @id @default(autoincrement())
   nome        String
   email       String       @unique
   senha       String
   telefone    String
+  descricao   String?
+  website     String?
+  role Role @default(USER)
+  criadoEm  DateTime @default(now())
   comentarios Comentario[]
   publicacao  Publicacao[]
+  curtidas Curtida[]
 }
 
 model Outbox {
@@ -55,6 +65,18 @@ model Publicacao {
   criadoEm       DateTime @default(now())
   comentarios Comentario[]
   usuario     Usuario      @relation(fields: [usuarioId], references: [id])
+  curtidas Curtida[]
+}
+
+model Curtida {
+  id Int @id @default(autoincrement())
+  usuarioId Int
+  publicacaoId Int
+
+  usuario       Usuario     @relation(fields: [usuarioId], references: [id])
+  publicacao    Publicacao  @relation(fields: [publicacaoId], references: [id])
+
+  @@unique([usuarioId, publicacaoId])
 }
 
 model Comentario {

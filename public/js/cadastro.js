@@ -9,7 +9,9 @@ document.getElementById("cadastroFormulario").addEventListener("submit", async f
         nome: document.getElementById("nome").value,
         email: document.getElementById("email").value,
         senha: document.getElementById("senha").value,
-        telefone: document.getElementById("telefone").value
+        telefone: document.getElementById("telefone").value,
+        descricao: document.getElementById("descricao").value,
+        website: document.getElementById("website").value
     }
 
     const response = await fetch(`${API_URL}/users/create_user`, {

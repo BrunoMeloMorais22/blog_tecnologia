@@ -4,7 +4,9 @@ const AppError = require('../utils/AppError')
 const jwt = require('jsonwebtoken')
 const logger = require('../utils/logger')
 
-exports.createUser = async(nome, email, senha, telefone) => {   
+exports.createUser = async(dadosValidados) => {   
+    const { nome, email, senha, telefone, descricao, website } = dadosValidados
+     
     const usuarioExiste = await userRepository.findByEmail(email)
 
     if(usuarioExiste) {
@@ -17,7 +19,9 @@ exports.createUser = async(nome, email, senha, telefone) => {
         nome, 
         email, 
         senha: senhaHash,
-        telefone
+        telefone,
+        descricao, 
+        website
     })
 
     return {
@@ -82,3 +86,52 @@ exports.perfilPosts = async(usuarioId) => {
 
     return pegarPosts
 }
+
+exports.editarPerfil = async(usuarioId, nome, email, descricao, website) => {
+    const pegarUsuario = await userRepository.findByUserId(usuarioId)
+
+    if(!pegarUsuario){
+        throw new Error("Usuário não encontrado", 404);
+    }
+
+    if(!nome && !email){
+        throw new AppError("Por favor, atualize ao menos 1 dos campos", 400)
+    }
+
+    if (nome !== undefined && !nome.trim()) {
+        throw new AppError("Nome não pode ser vazio", 400);
+    }
+
+    const usuario = await userRepository.update(
+        usuarioId,
+        nome, 
+        email,
+        descricao,
+        website
+    )
+
+    return {
+        message: "Perfil atualizado com sucesos",
+        usuarioId: usuario.id
+    }
+}
+
+exports.pegarInformacoes = async(usuarioId) => {
+    const usuario = await userRepository.findByUserId(usuarioId)
+
+    if(!usuario){
+        throw new AppError("Usuário não encontrado", 404);
+    }
+
+    return usuario
+}
+
+exports.buscarInformacoes = async() => {
+    const totalUsuarios = await userRepository.countUsuario()
+    const totalPost = await userRepository.countPost()
+
+    return{
+        totalUsuarios,
+        totalPost
+    }
+}   

@@ -37,6 +37,9 @@ app.get("/criar_post", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/post.html"))
 })
 
+app.get("/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/html/admin.html"))
+})
 
 
 module.exports = app;

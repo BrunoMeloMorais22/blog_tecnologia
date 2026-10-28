@@ -148,7 +148,6 @@ async function consumirMensagem(mensagem) {
                 erroRegistro.message
             )
 
-            // Preserva a mensagem para nova tentativa de processamento.
             canal.nack(mensagem, false, true)
         }
     }
@@ -160,7 +159,6 @@ async function iniciarConsumer() {
     canal = await conexao.createChannel()
     canalRetry = await conexao.createConfirmChannel()
 
-    // Estas configurações devem corresponder às filas existentes.
     await canal.assertQueue(FILA_DLQ, { durable: true })
 
     await canal.assertQueue(FILA, {
@@ -180,7 +178,6 @@ async function iniciarConsumer() {
         }
     })
 
-    // Processa uma mensagem por vez neste consumer.
     await canal.prefetch(1)
 
     console.log('Consumer aguardando mensagens...')

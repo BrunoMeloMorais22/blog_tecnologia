@@ -196,7 +196,10 @@ async function carregarPost() {
                 </p>
 
                 <div class="card-acoes">
-                    <button>♡ Curtir</button>
+                    <button id="curtida-${publicacao.id}" onclick="curtir(${publicacao.id})">
+                    <i class="fa-regular fa-heart"></i>
+                        Curtir
+                    </button>
 
                     <button onclick="abrirComentarios(${publicacao.id})">
                         <i class="fa-solid fa-comment"></i>
@@ -238,4 +241,52 @@ function abrirFechar() {
     const fechada = sidebar.classList.contains("fechada");
 
     botao.style.display = fechada ? "block" : "none";
+}
+
+
+async function curtir(publicacaoId) {
+    const botao = document.getElementById(`curtida-${publicacaoId}`);
+
+    if (!botao) return;
+
+    if (!token) {
+        alert("Você precisa estar logado para curtir uma publicação.");
+        return;
+    }
+
+    try {
+        const result = await fetch(
+            `${API_URL}/posts/${publicacaoId}/curtir`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        const resultado = await result.json();
+
+        if (!result.ok) {
+            alert(
+                resultado.message ||
+                resultado.error ||
+                "Erro ao curtir publicação"
+            );
+            return;
+        }
+
+        const coracao = botao.querySelector("i");
+
+        if (resultado.curtida) {
+            coracao.classList.remove("fa-regular");
+            coracao.classList.add("fa-solid");
+        } else {
+            coracao.classList.remove("fa-solid");
+            coracao.classList.add("fa-regular");
+        }
+    } catch (erro) {
+        console.error("Erro ao curtir:", erro);
+        alert("Não foi possível conectar ao servidor.");
+    }
 }

@@ -8,5 +8,6 @@ router.post("/criar_post", auth, upload.single("imagem"), postController.criarPo
 router.get("/pegar_posts", postController.pegarPosts)
 router.put("/editar_post/:id", auth, postController.editarPost)
 router.delete("/deletar_post/:id", auth, postController.deletarPost)
+router.post("/:id/curtir", auth, postController.curtir)
 
 module.exports = router

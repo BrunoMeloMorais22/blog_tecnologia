@@ -1,30 +1,38 @@
-const jwt = require('jsonwebtoken')
 
-module.exports = (req, res, next) => {
-    const authHeader = req.headers.authorization
+const jwt = require("jsonwebtoken");
+const userRepository = require("../repositories/userRepository");
 
-    if(!authHeader){
+module.exports = async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
         return res.status(401).json({
             success: false,
             error: "Token não fornecido"
-        })
+        });
     }
 
-    const token = authHeader.split(" ")[1]
+    const token = authHeader.split(" ")[1];
 
-    try{
+    try {
         const decoded = jwt.verify(
             token,
-            process.env.JWT_SECRET  
-        )
+            process.env.JWT_SECRET
+        );
 
-        req.usuario = decoded
+        const usuario = await userRepository.findById(decoded.id);
 
-        next()
-    } catch(error) {
-        return res.status(401).json({
-            success: false,
-            error: "Token inválido"
-        })
+        if (!usuario) {
+            return res.status(401).json({
+                success: false,
+                error: "Usuário não encontrado"
+            });
+        }
+
+        req.usuario = usuario;
+
+        next();
+    } catch (error) {
+        next(error);
     }
-}
+};

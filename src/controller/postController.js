@@ -1,5 +1,3 @@
-
-const { id } = require('zod/v4/locales')
 const postService = require('../service/postService')
 const { Prisma } = require('@prisma/client')
 
@@ -86,3 +84,21 @@ exports.deletarPost = async (req, res, next) => {
     }
 }
 
+exports.curtir = async(req, res, next) => {
+    try{
+        const usuarioId = req.usuario.id
+
+        const publicacaoId = Number(req.params.id)
+
+        const result = await postService.curtir(
+            usuarioId,
+            publicacaoId
+        )
+
+        return res.status(200).json(result)
+    }
+
+    catch(error){
+        next(error)
+    }
+}

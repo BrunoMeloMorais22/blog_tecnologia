@@ -1,5 +1,6 @@
 
 const postRepository = require('../repositories/postRepository')
+const curtidaRepository = require('../repositories/curtidaRepository')
 const AppError = require('../utils/AppError')
 const logger = require('../utils/logger')
 
@@ -103,4 +104,40 @@ exports.deletarPost = async (publicacaoId, usuarioId) => {
     }
 
     return await postRepository.deletarPost(publicacaoId)
+}
+
+exports.curtir = async(usuarioId, publicacaoId) => {
+    const publicacao = await postRepository.buscarPorId(publicacaoId)
+    
+
+    if(!publicacao) {
+        throw new Error("Publicação não encontrada", 404);
+    }
+
+    const curtida = await curtidaRepository.buscarCurtida(
+        usuarioId,
+        publicacaoId
+    )
+
+    if(curtida != null){
+        await curtidaRepository.removerCurtida(
+            usuarioId,
+            publicacaoId
+        );
+
+        return {
+            curtida: false
+        }
+    }
+
+    else{
+        await curtidaRepository.criarCurtida(
+            usuarioId,
+            publicacaoId
+        )
+
+        return {
+            curtida: true
+        }
+    }
 }

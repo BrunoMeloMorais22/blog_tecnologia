@@ -18,7 +18,8 @@
                 <p>Gerencie suas informações e acompanhe sua atividade</p>
             </div>
 
-            <button class="botao-editar" onclick="editarPerfil()">✎ Editar perfil</button>
+            <button class="botao-editar" onclick="alternarEdicaoPerfil()" type="button">✎ Editar perfil</button>
+            
         </header>
         <div class="layout-perfil">
 
@@ -43,14 +44,14 @@
                             <h2>Desenvolvedor</h2>
                             <a href="#">@desenvolvedor.dev</a>
 
-                            <p>
-                                Apaixonado por tecnologia, café e código limpo.
-                                Compartilho conhecimento sobre desenvolvimento,
-                                boas práticas e ferramentas que uso no dia a dia.
+                            <input type="text" id="inputDescricao" hidden placeholder="Conte sobre você">
+
+                            <p id="descricao">
+                                
                             </p>
 
                             <div class="perfil-meta">
-                                <span>▣ Membro desde jan. 2024</span>
+                                <span id="membro_desde">▣ Membro desde jan. 2024</span>
                                 <span>⌖ Brasil</span>
                             </div>
                         </div>
@@ -61,7 +62,7 @@
                         <div class="estatistica">
                             <span class="estatistica-icone">▤</span>
                             <div>
-                                <strong>24</strong>
+                                <strong id="qtd_post">24</strong>
                                 <span>Posts</span>
                             </div>
                         </div>
@@ -103,22 +104,24 @@
 
             <aside class="coluna-lateral">
 
-                <section class="card sobre-card" contenteditable="true">
+                <section class="card sobre-card">
                     <h2>Sobre mim</h2>
 
                     <div class="informacao-item">
-                        <span class="info-icone">♙</span>
+                        <span class="info-icone">✉</span>
                         <div>
-                            <span >Nome</span>
-                            <strong>Desenvolvedor</strong>
+                            <span>Nome</span>
+                            <input type="text" id="inputNome" hidden>
+                            <strong id="nome"></strong>
                         </div>
                     </div>
 
                     <div class="informacao-item">
                         <span class="info-icone">✉</span>
                         <div>
-                            <span >Email</span>
-                            <strong>dev@email.com</strong>
+                            <span>Email</span>
+                            <input type="email" id="inputEmail" hidden>
+                            <strong id="email"></strong>
                         </div>
                     </div>
 
@@ -134,7 +137,8 @@
                         <span class="info-icone">↗</span>
                         <div>
                             <span>Website</span>
-                            <strong>devblog.com</strong>
+                            <input type="url" id="inputWebsite" hidden>
+                            <strong id="website"></strong>
                         </div>
                     </div>
 
@@ -145,6 +149,8 @@
                             <strong>github.com/desenvolvedor</strong>
                         </div>
                     </div>
+
+                    <div id="mensagem"></div>
                 </section>
 
 

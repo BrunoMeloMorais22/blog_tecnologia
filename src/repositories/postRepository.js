@@ -23,7 +23,15 @@ exports.criarPost = async (data) => {
 } 
 
 exports.getPosts = async() => {
-    return await prisma.publicacao.findMany()
+    return await prisma.publicacao.findMany({
+        include: {
+            _count: {
+                select: {
+                    curtidas: true   
+                }
+            }
+        }
+    })
 }
 
 exports.buscarPorId = async (publicacaoId) => {
