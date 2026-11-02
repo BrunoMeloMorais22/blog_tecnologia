@@ -123,7 +123,14 @@ exports.pegarInformacoes = async(usuarioId) => {
         throw new AppError("Usuário não encontrado", 404);
     }
 
-    return usuario
+    const totalCurtidas = usuario.publicacao.reduce((total, publicacao) => {
+        return total + publicacao._count.curtidas
+    }, 0)
+
+    return {
+        ...usuario,
+        totalCurtidas
+    }
 }
 
 exports.buscarInformacoes = async() => {
@@ -135,3 +142,16 @@ exports.buscarInformacoes = async() => {
         totalPost
     }
 }   
+
+exports.buscarPerfilPublico = async(usuarioId) => {
+    const usuario = await userRepository.buscarPerfilPublico(usuarioId)
+
+    if(!usuario){
+       throw new AppError("Usuário não existe");
+    }
+
+    return {
+        message: "Usuário encontrado",
+        usuario
+    }
+}

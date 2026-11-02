@@ -3,37 +3,60 @@ const API_URL = "http://localhost:3000";
 
 const token = localStorage.getItem("token");
 
+const params = new URLSearchParams(window.location.search);
+const usuarioId = Number(params.get("id"));
+const perfilPublico = params.has("id");
+
 
 async function carregarInformacoes() {
     const quantidade_post = document.getElementById("qtd_post")
+    const quantidade_curtida = document.getElementById("qtd_curtida")
     const nome = document.getElementById("nome")
     const email = document.getElementById("email")
     const descricao = document.getElementById("descricao")
     const website = document.getElementById("website")
     const membro_desde = document.getElementById("membro_desde")
 
+    const botaoEditar = document.querySelector(".botao-editar")
+    const estatisticas = document.querySelector(".estatisticas")
+    const sobreEmail = document.querySelector("#email").closest(".informacao-item")
+
+    const perfilPublico = params.has("id")
+
+    
+    if (perfilPublico) {
+        botaoEditar.style.display = "none"
+        estatisticas.style.display = "none"
+        sobreEmail.style.display = "none"
+    }   
+    
+
     try{
-        if(!token){
-            throw new Error("Usuário não autenticado");            
+        if(!perfilPublico && !token){
+            throw new Error("Usuário não autenticado");
+            
+        }
+        const url = perfilPublico ? `${API_URL}/users/perfil/${usuarioId}` : `${API_URL}/users/perfil/me`
+
+        const headers = {}
+
+        if(!perfilPublico){
+            headers.Authorization = `Bearer ${token}`
         }
 
-        const response = await fetch(`${API_URL}/users/perfil/me`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+        const response = await fetch(url, {
+            headers
         })
+
+        const resultado = await response.json(); 
+
+        const usuario = perfilPublico ? resultado.data.usuario : resultado.data
 
         if(!response.ok){
             throw new Error(`Erro HTTP: ${response.status}`);
         }
 
-        const resultado = await response.json(); 
-
         console.log("Dados recebidos da API:", resultado);
-
-        quantidade_post.textContent = resultado.data._count.publicacao
-
-        const usuario = resultado.data
 
         const dataCadastro = new Date(usuario.criadoEm)
 
@@ -42,11 +65,24 @@ async function carregarInformacoes() {
             year: "numeric"
         })
         
+        nome.textContent = usuario.nome
+        descricao.textContent = usuario.descricao || "Conte um pouco sobre você..."
+        website.textContent = usuario.website || ""
+
+        if (!perfilPublico) {
+            email.textContent = resultado.data.email
+            const dataCadastro = new Date(usuario.criadoEm)
+
+            const membroDesde = dataCadastro.toLocaleDateString("pt-BR", {
+            month: "short",
+            year: "numeric"
+        })
+
         membro_desde.textContent = `Membro desde ${membroDesde}`
-        nome.textContent = resultado.data.nome
-        email.textContent = resultado.data.email
-        descricao.textContent = resultado.data.descricao || "Conte um pouco sobre você...";
-        website.textContent = resultado.data.website
+
+        quantidade_post.textContent = resultado.data._count.publicacao
+        quantidade_curtida.textContent = resultado.data.totalCurtidas
+        }
     }
 
     catch(erro){
@@ -54,25 +90,47 @@ async function carregarInformacoes() {
     }
 }
 
+
 async function carregarPost() {
+
     try {
-        if (!token) {
-            throw new Error("Usuário não autenticado.");
-        }
+        let publicacoes;
 
-        const response = await fetch(`${API_URL}/users/perfil/meus_posts`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+        if (perfilPublico) {
+            
+            const response = await fetch(
+                `${API_URL}/users/perfil/${usuarioId}`
+            );
+
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
             }
-        );
 
-        if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status}`);
+            const resultado = await response.json();
+            publicacoes = resultado.data.usuario.publicacao;
+
+        } else {
+            // Posts do próprio usuário
+            if (!token) {
+                throw new Error("Usuário não autenticado.");
+            }
+
+            const response = await fetch(
+                `${API_URL}/users/perfil/meus_posts`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+
+            const resultado = await response.json();
+            publicacoes = resultado.data;
         }
-
-        const resultado = await response.json(); 
 
         const container = document.querySelector(".card.posts-card");
 
@@ -83,16 +141,14 @@ async function carregarPost() {
 
         container.innerHTML = "";
 
-        resultado.data.forEach(publicacao => {
+        publicacoes.forEach(publicacao => {
             const card = document.createElement("div");
             card.classList.add("post-card");
 
             card.innerHTML = `
                 <h3>${publicacao.titulo}</h3>
 
-                <p id="descricao-${publicacao.id}">
-                    ${publicacao.descricao}
-                </p>
+                <p>${publicacao.descricao}</p>
 
                 ${publicacao.imagem ? `
                     <img
@@ -109,6 +165,7 @@ async function carregarPost() {
         console.error("Erro ao carregar os posts:", erro);
     }
 }
+
 
 function ativarEdicaoPerfil() {
     const nome = document.getElementById("nome");
@@ -224,6 +281,9 @@ async function alternarEdicaoPerfil() {
         ativarEdicaoPerfil();
     }
 }
+
+
+console.log(usuarioId)
 
 carregarInformacoes()
 carregarPost();

@@ -368,11 +368,21 @@ button > a {
 }
 
 .menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
     top: 10px;
     left: 10px;
+    right: 10px;
     z-index: 10;
 }
+
+.menu-acoes {
+    position: relative;
+}
+
+
 
 .menu-btn {
     background-color: #fff;
@@ -385,17 +395,21 @@ button > a {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.menu-opcoes {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background-color: white;
-    min-width: 160px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 20;
+
+
+.menu-btn-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -532,22 +546,17 @@ button > a {
     top: 20px;
     left: 20px;
     z-index: 1000;
-
     background: #2563eb;
     color: #ffffff;
     border: none;
     border-radius: 10px;
-
     width: 46px;
     height: 46px;
-
     font-size: 24px;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     transition: background 0.2s, transform 0.2s;
 }
@@ -566,10 +575,8 @@ button > a {
     width: 38px;
     height: 38px;
     flex-shrink: 0;
-
     display: grid;
     place-items: center;
-
     border-radius: 50%;
     background: #374151;
     color: #93c5fd;
@@ -602,7 +609,7 @@ button > a {
     cursor: pointer;
 }
 
-/* Ajuste para telas menores */
+
 @media (max-width: 768px) {
     .sidebar {
         width: 72px;
@@ -642,12 +649,19 @@ button > a {
     }
 }
 
-
+.menu-opcoes {
+    display: none;
+    position: absolute;
+    top: 40px;
+    font-size: 30px;
+    left: 0;
+}
 
 .menu-opcoes.ativo {
     display: flex;
     flex-direction: column;
 }
+
 
 .menu-opcoes button {
     padding: 12px 15px;

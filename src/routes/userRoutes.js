@@ -11,5 +11,6 @@ router.get("/perfil/meus_posts", auth, userController.perfilPosts)
 router.put("/perfil/:id", auth, userController.editarPerfil)
 router.get("/perfil/me", auth, userController.perfilInformacoes)
 router.get("/admin", auth, authorize('ADMIN'), userController.pegarInformacoes)
+router.get("/perfil/:usuarioId", userController.buscarPerfilPublico)
 
 module.exports = router

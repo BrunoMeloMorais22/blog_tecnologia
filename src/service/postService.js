@@ -35,10 +35,19 @@ exports.criarPost = async (titulo, descricao, imagem, usuarioId) => {
     }
 }
 
-exports.pegarPosts = async() => {
-    const posts = await postRepository.getPosts()
+exports.pegarPosts = async(usuarioId) => {
+    const posts = await postRepository.getPosts(usuarioId)
 
-    return posts
+    const resultado = posts.map((post) => {
+        const curtidoPorMim = usuarioId ? post.curtidas.length > 0 : false
+
+        return {
+            ...post,
+            curtidoPorMim
+        }
+    })
+
+    return resultado
 }
 
 exports.editarPost = async (descricao, publicacaoId, usuarioId) => {

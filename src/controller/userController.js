@@ -1,6 +1,7 @@
 
 const postService = require('../service/postService')
 const userService = require('../service/userService')
+const AppError = require('../utils/AppError')
 const { registerSchema } = require('../validator/userValidator')
 
 exports.createUser = async(req, res, next) => {
@@ -133,3 +134,20 @@ exports.pegarInformacoes = async(req, res, next) => {
         next(erro)
     }
 }
+
+exports.buscarPerfilPublico = async(req, res, next) => {
+    const usuarioId  = Number(req.params.usuarioId)
+
+    if(!Number.isInteger(usuarioId) || usuarioId <= 0){
+       throw new AppError("ID do usuário inválido");
+    }
+
+    const resultado = await userService.buscarPerfilPublico(
+        usuarioId
+    )
+
+    return res.status(200).json({
+        success: true,
+        data: resultado
+    })
+} 

@@ -1,16 +1,52 @@
 
 const API_URL = `http://localhost:3000`
 
-const token = localStorage.getItem("token")
-const botoes = document.getElementById("botoes")
+let token = localStorage.getItem("token");
 
-if(!token){
-    botoes.style.display = "flex"
+function tokenValido() {
+    if (!token) return false;
+
+    try {
+        const parteToken = token.split(".")[1]
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+
+        const payload = JSON.parse(atob(parteToken));
+
+        if (!payload.exp) {
+            localStorage.removeItem("token");
+            token = null;
+            return false;
+        }
+
+        const agora = Math.floor(Date.now() / 1000);
+
+        if (agora >= payload.exp) {
+            localStorage.removeItem("token");
+            token = null;
+            return false;
+        }
+
+        return true;
+
+    } catch (erro) {
+        localStorage.removeItem("token");
+        token = null;
+        return false;
+    }
 }
 
-else{
-    botoes.style.display = "none"
+const botoes = document.getElementById("botoes");
+const botaoMenu = document.getElementById("botaoMenu")
+
+if (tokenValido()) {
+    botoes.style.display = "none";
+    botaoMenu.style.display = "flex"
+} else {
+    botoes.style.display = "flex";
+    botaoMenu.style.display = "none"
 }
+
 
 function abrirComentarios(postId) {
     const comentarios = document.getElementById(`comentarios-${postId}`)
@@ -144,8 +180,17 @@ function obterUsuarioLogado() {
 const usuarioLogadoId = obterUsuarioLogado();
 
 async function carregarPost() {
-    const response = await fetch(`${API_URL}/posts/pegar_posts`);
+    const headers = {}
+
+    if(token){
+        headers.Authorization = `Bearer ${token}`
+    }
+    const response = await fetch(`${API_URL}/posts/pegar_posts`, {
+        headers
+    });
+
     const resultado = await response.json();
+
     const container = document.getElementById("cards");
 
     container.innerHTML = "";
@@ -156,77 +201,79 @@ async function carregarPost() {
             Number(publicacao.usuarioId) === Number(usuarioLogadoId);
 
         container.innerHTML += `
-            <div class="card">
+    <div class="card">
 
-                ${donoDoPost ? `
-                    <div class="menu-container">
-                        <button
-                            class="menu-btn"
-                            onclick="abrirMenu(event, ${publicacao.id})"
-                        >
-                            ⋮
-                        </button>
+        <div class="menu-container">
 
-                        <div
-                            class="menu-opcoes"
-                            id="menu-${publicacao.id}"
-                        >
-                            <button
-                                id="editar-${publicacao.id}"
-                                onclick="habilitarEdicao(${publicacao.id})"
-                            >
-                                ✏️ Editar Post
-                            </button>
+    ${donoDoPost ? `
+        <div class="menu-acoes">
 
-                            <button
-                                onclick="deletar_post(${publicacao.id})"
-                            >
-                                🗑️ Deletar Post
-                            </button>
-                        </div>
-                    </div>
-                ` : ""}
+            <button
+                class="menu-btn"
+                onclick="abrirMenu(event, ${publicacao.id})">
+                ⋮
+            </button>
 
-                <img src="${API_URL}/upload/${publicacao.imagem}">
+            <div class="menu-opcoes" id="menu-${publicacao.id}">
 
-                <h3>${publicacao.titulo}</h3>
+                <button
+                    id="editar-${publicacao.id}"
+                    onclick="habilitarEdicao(${publicacao.id})">
+                    ✏️ Editar Post
+                </button>
 
-                <p id="descricao-${publicacao.id}">
-                    ${publicacao.descricao}
-                </p>
-
-                <div class="card-acoes">
-                    <button id="curtida-${publicacao.id}" onclick="curtir(${publicacao.id})">
-                    <i class="fa-regular fa-heart"></i>
-                        Curtir
-                    </button>
-
-                    <button onclick="abrirComentarios(${publicacao.id})">
-                        <i class="fa-solid fa-comment"></i>
-                        COMENTAR
-                    </button>
-                </div>
-
-                <div
-                    class="comentarios"
-                    id="comentarios-${publicacao.id}"
-                    style="display: none;"
-                >
-                    <input
-                        type="text"
-                        id="comentario-${publicacao.id}"
-                        placeholder="Digite um comentário..."
-                    >
-
-                    <button onclick="enviarComentario(${publicacao.id})">
-                        Comentar
-                    </button>
-                </div>
-
-                <div id="lista-comentarios-${publicacao.id}"></div>
+                <button onclick="deletar_post(${publicacao.id})">
+                    🗑️ Deletar Post
+                </button>
 
             </div>
-        `;
+        </div>
+    ` : ""}
+
+    <a href="/perfil?id=${publicacao.usuarioId}" class="menu-btn-user" title="Acessar perfil">
+        <i class="fa-solid fa-user"></i>
+    </a>
+
+</div>
+
+        <img src="${API_URL}/upload/${publicacao.imagem}">
+        <p>${publicacao.usuario.nome}</p>
+
+        <h3>${publicacao.titulo}</h3>
+
+        <p id="descricao-${publicacao.id}">
+            ${publicacao.descricao}
+        </p>
+
+        <div class="card-acoes">
+            <button id="curtida-${publicacao.id}" onclick="curtir(${publicacao.id})">
+                <i class="${publicacao.curtidoPorMim ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                Curtir
+            </button>
+
+            <button onclick="abrirComentarios(${publicacao.id})">
+                <i class="fa-solid fa-comment"></i>
+                COMENTAR
+            </button>
+        </div>
+
+        <div class="comentarios"
+             id="comentarios-${publicacao.id}"
+             style="display: none;">
+            <input
+                type="text"
+                id="comentario-${publicacao.id}"
+                placeholder="Digite um comentário...">
+
+            <button onclick="enviarComentario(${publicacao.id})">
+                Comentar
+            </button>
+        </div>
+
+        <div id="lista-comentarios-${publicacao.id}"></div>
+
+    </div>
+`;
     });
 }
 

@@ -29,7 +29,9 @@ exports.criarPost = async(req, res, next) => {
 
 exports.pegarPosts = async(req, res, next) => {
     try{
-        const result = await postService.pegarPosts()
+        const usuarioId = req.usuario?.id ?? null
+
+        const result = await postService.pegarPosts(usuarioId)
 
         res.status(200).json({
             success: true,

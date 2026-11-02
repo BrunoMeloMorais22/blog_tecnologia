@@ -41,7 +41,10 @@
                         </div>
 
                         <div class="perfil-texto">
-                            <h2>Desenvolvedor</h2>
+                            <div>
+                                <input type="text" id="inputNome" hidden>
+                                <h2 id="nome"></h2>
+                            </div>
                             <a href="#">@desenvolvedor.dev</a>
 
                             <input type="text" id="inputDescricao" hidden placeholder="Conte sobre você">
@@ -51,7 +54,7 @@
                             </p>
 
                             <div class="perfil-meta">
-                                <span id="membro_desde">▣ Membro desde jan. 2024</span>
+                                <span id="membro_desde"></span>
                                 <span>⌖ Brasil</span>
                             </div>
                         </div>
@@ -68,26 +71,10 @@
                         </div>
 
                         <div class="estatistica">
-                            <span class="estatistica-icone">◎</span>
-                            <div>
-                                <strong>1.2k</strong>
-                                <span>Visualizações</span>
-                            </div>
-                        </div>
-
-                        <div class="estatistica">
                             <span class="estatistica-icone">♡</span>
                             <div>
-                                <strong>312</strong>
+                                <strong id="qtd_curtida">312</strong>
                                 <span>Curtidas</span>
-                            </div>
-                        </div>
-
-                        <div class="estatistica">
-                            <span class="estatistica-icone">▢</span>
-                            <div>
-                                <strong>178</strong>
-                                <span>Comentários</span>
                             </div>
                         </div>
 
@@ -107,14 +94,6 @@
                 <section class="card sobre-card">
                     <h2>Sobre mim</h2>
 
-                    <div class="informacao-item">
-                        <span class="info-icone">✉</span>
-                        <div>
-                            <span>Nome</span>
-                            <input type="text" id="inputNome" hidden>
-                            <strong id="nome"></strong>
-                        </div>
-                    </div>
 
                     <div class="informacao-item">
                         <span class="info-icone">✉</span>
@@ -162,5 +141,5 @@
     </main>
 
 </body>
-<script src="../js/perfil.js"></script>
+<script src="../js/perfil.js" defer></script>
 </html>

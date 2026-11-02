@@ -32,24 +32,35 @@ exports.findById = async(usuarioId) => {
 
 exports.findByUserId = async (usuarioId) => {
     return await prisma.usuario.findUnique({
-        where:{
+        where: {
             id: usuarioId
         },
 
-        select:{
+        select: {
             nome: true,
             email: true,
             descricao: true,
             website: true,
             criadoEm: true,
+
             _count: {
                 select: {
                     publicacao: true
                 }
+            },
+
+            publicacao: {
+                select: {
+                    _count: {
+                        select: {
+                            curtidas: true
+                        }
+                    }
+                }
             }
         }
-    })
-}
+    });
+};
 
 exports.update = async(usuarioId, nome, email, descricao, website) => {
     return await prisma.usuario.update({
@@ -72,4 +83,26 @@ exports.countUsuario = () => {
 
 exports.countPost = () => {
     return prisma.publicacao.count()
+}
+
+exports.buscarPerfilPublico = async(usuarioId) => {
+    return await prisma.usuario.findUnique({
+        where: {
+            id: usuarioId
+        },
+
+        select: {
+            nome: true,
+            descricao: true,
+            website: true,
+            publicacao: {
+                select: {
+                    id: true,
+                    titulo: true,
+                    descricao: true,
+                    imagem: true
+                }
+            }
+        }
+    })
 }
