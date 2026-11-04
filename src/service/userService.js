@@ -5,28 +5,34 @@ const jwt = require('jsonwebtoken')
 const logger = require('../utils/logger')
 
 exports.createUser = async(dadosValidados) => {   
-    const { nome, email, senha, telefone, descricao, website } = dadosValidados
+    const { nome, email, senha, telefone, descricao, website, username } = dadosValidados
      
     const usuarioExiste = await userRepository.findByEmail(email)
+    const usernameExiste = await userRepository.findByUsername(username)
 
     if(usuarioExiste) {
         throw new AppError("Usuário já existe")
     }
 
+    if(usernameExiste){
+        throw new AppError("Username já existe. Por favor, escolha outro apelido");
+    }
+
     const senhaHash = await bcrypt.hash(senha, 10)
 
-    const usuairo = await userRepository.create({
+    const usuario = await userRepository.create({
         nome, 
         email, 
         senha: senhaHash,
         telefone,
         descricao, 
-        website
+        website,
+        username
     })
 
     return {
         message: "Usuário criado com sucesso",
-        id: usuairo.id
+        id: usuario.id
     }
 }
 
@@ -111,7 +117,7 @@ exports.editarPerfil = async(usuarioId, nome, email, descricao, website) => {
     )
 
     return {
-        message: "Perfil atualizado com sucesos",
+        message: "Perfil atualizado com sucesso!",
         usuarioId: usuario.id
     }
 }

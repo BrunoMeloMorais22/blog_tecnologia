@@ -1,11 +1,10 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Black+Ops+One&family=Changa+One:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montenegrin+Gothic+One&family=Nabla&family=Roboto+Slab:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Merriweather", serif;
+    font-family: "inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
@@ -160,45 +159,41 @@ button {
 
 .post-card {
     position: relative;
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--card-secundario);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    min-width: 0;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+    transform: translateY(-2px);
+    border-color: #465b7a;
 }
 
 .post-card h3 {
-    margin: 0 0 12px;
-    color: #222222;
-    font-size: 1.35rem;
-    font-weight: 700;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
+    color: var(--texto);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .post-card p {
-    margin: 0 0 18px;
-    color: #555555;
-    font-size: 1rem;
+    color: var(--texto-secundario);
+    font-size: 14px;
     line-height: 1.7;
     white-space: pre-wrap;
-    overflow-wrap: anywhere;
 }
 
 .post-card img {
     display: block;
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-top: 18px;
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 15px;
 }
 
 @media (max-width: 600px) {
@@ -323,13 +318,9 @@ button {
     font-size: 11px;
 }
 
-/* =========================
-   ESTATÍSTICAS DO PERFIL
-========================= */
-
 .estatisticas {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     border-top: 1px solid var(--borda);
     padding: 18px 10px;
 }
@@ -366,10 +357,6 @@ button {
     font-size: 11px;
 }
 
-/* =========================
-   CABEÇALHO DAS SEÇÕES
-========================= */
-
 .secao-cabecalho {
     display: flex;
     align-items: center;
@@ -391,52 +378,6 @@ button {
 .link-ver-todos:hover {
     color: #a5b4fc;
 }
-
-/* =========================
-   LISTA DE POSTS
-========================= */
-
-
-/* Seção das publicações */
-.posts-card {
-    padding: 20px 0;
-}
-
-/* Cada publicação */
-.post-card {
-    padding: 16px 20px;
-    border-top: 1px solid var(--borda);
-    min-width: 0;
-}
-
-/* Título */
-.post-card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 8px;
-    overflow-wrap: anywhere;
-}
-
-/* Descrição */
-.post-card p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--texto-secundario);
-    margin: 0 0 12px;
-    overflow-wrap: anywhere;
-}
-
-/* Imagem da publicação */
-.post-card img {
-    display: block;
-    max-width: 100%;
-    width: auto;
-    max-height: 280px;
-    object-fit: contain;
-    border-radius: 6px;
-    margin-top: 12px;
-}
-
 
 .posts-card > .secao-cabecalho {
     padding: 0 20px 18px;

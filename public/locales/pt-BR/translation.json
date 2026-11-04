@@ -1,0 +1,45 @@
+{
+    "geral": {
+        "inicio": "Início",
+        "perfil": "Perfil",
+        "configuracoes": "Configurações",
+        "sair": "Sair",
+        "cancelar": "Cancelar",
+        "salvar": "Salvar",
+        "voltar": "Voltar"
+    },
+    "configuracoes": {
+        "titulo": "Configurações",
+        "descricao": "Gerencie preferências e informações da sua conta",
+        "senha": "Alteração de senha",
+        "excluir": "Excluir conta",
+        "aparencia": "Modo de aparência",
+        "idioma": "Idioma"
+    },
+    "login": {
+        "titulo": "Bem-vindo de volta",
+        "email": "E-mail",
+        "senha": "Senha",
+        "entrar": "Entrar",
+        "cadastro": "Não possui uma conta? Cadastre-se"
+    },
+    "cadastro": {
+    "titulo": "Faça seu cadastro",
+    "nome": "Nome",
+    "nomePlaceholder": "Digite seu nome...",
+    "email": "Email",
+    "emailPlaceholder": "Digite seu email...",
+    "senha": "Senha",
+    "senhaPlaceholder": "Digite uma senha...",
+    "telefone": "Telefone",
+    "telefonePlaceholder": "Digite seu telefone...",
+    "descricao": "Descrição",
+    "descricaoPlaceholder": "Conte um pouco sobre você (OPCIONAL)",
+    "website": "Website",
+    "websitePlaceholder": "Informe seu site (OPCIONAL)",
+    "username": "Username",
+    "usernamePlaceholder": "Crie um username",
+    "registrar": "Fazer cadastro",
+    "login": "Já tem uma conta? Faça login"
+}
+}

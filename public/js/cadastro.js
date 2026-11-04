@@ -11,6 +11,7 @@ document.getElementById("cadastroFormulario").addEventListener("submit", async f
         senha: document.getElementById("senha").value,
         telefone: document.getElementById("telefone").value,
         descricao: document.getElementById("descricao").value,
+        username: document.getElementById("username").value,
         website: document.getElementById("website").value
     }
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Configuração</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/configuracoes.css">
+</head>
+<body>
+    <header>
+        <h1 data-i18n="configuracoes.titulo">Configurações</h1>
+        <p data-i18n="configuracoes.descricao">Gerencie preferências e informações da sua conta</p>
+    </header>
+
+    <div id="container">
+        <div class="cards">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Alteração de senha</h3>
+            <p>Altere sua senha e deixe sua conta mais segura</p>
+        </div>
+
+        <div class="cards">
+            <i class="fa-solid fa-trash"></i>
+            <h3>Excluir conta</h3>
+            <p>Exclua permanentemente sua conta e todos os seus dados</p>
+        </div>
+
+        <div class="cards">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Modo de aparência</h3>
+            <p>Escolha entre o modo claro e escuro</p>
+
+            <div class="tema-container">
+                <i class="fa-solid fa-sun"></i>
+
+                <label class="switch">
+                    <input type="checkbox" id="tema">
+                    <span class="slider"></span>
+                </label>
+
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+        </div>
+    
+        <div class="cards">
+            <i class="fa-solid fa-globe"></i>
+            <h3>Idioma</h3>
+            <p>Selecione o idioma da plataforma</p>
+
+            <select name="idioma" id="idioma">
+                <option value="portugues">Português</option>
+                <option value="en">Inglês</option>
+                <option value="es">Espanhol</option>
+                <option value="zh">Mandarin</option>
+            </select>
+        </div>
+    </div>
+
+    <aside>
+        <strong>IMPORTANTE</strong>
+        <p>Algumas alterações podem exigir que você faça login novamente.</p>
+    </aside>
+
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="../js/idioma.js"></script>
+    <script src="../js/configuracoes.js"></script>
+</body>
+</html>

@@ -15,13 +15,14 @@ async function carregarInformacoes() {
     const email = document.getElementById("email")
     const descricao = document.getElementById("descricao")
     const website = document.getElementById("website")
+    const username = document.getElementById("username")
     const membro_desde = document.getElementById("membro_desde")
+    const tituloPerfil = document.getElementById("titulo-perfil");
+    const dinamico = document.getElementById("dinamico")
 
     const botaoEditar = document.querySelector(".botao-editar")
     const estatisticas = document.querySelector(".estatisticas")
     const sobreEmail = document.querySelector("#email").closest(".informacao-item")
-
-    const perfilPublico = params.has("id")
 
     
     if (perfilPublico) {
@@ -52,6 +53,10 @@ async function carregarInformacoes() {
 
         const usuario = perfilPublico ? resultado.data.usuario : resultado.data
 
+        
+        tituloPerfil.textContent = perfilPublico ? `Perfil de ${usuario.nome}` : "Meu perfil";
+        dinamico.textContent = perfilPublico ? `Sobre ${usuario.nome}` : "Sobre mim"
+
         if(!response.ok){
             throw new Error(`Erro HTTP: ${response.status}`);
         }
@@ -66,22 +71,16 @@ async function carregarInformacoes() {
         })
         
         nome.textContent = usuario.nome
+        membro_desde.textContent = `Membro desde ${membroDesde}`
+        username.textContent = usuario.username ? `@${usuario.username}` : "Username não definido";
         descricao.textContent = usuario.descricao || "Conte um pouco sobre você..."
         website.textContent = usuario.website || ""
 
         if (!perfilPublico) {
             email.textContent = resultado.data.email
-            const dataCadastro = new Date(usuario.criadoEm)
 
-            const membroDesde = dataCadastro.toLocaleDateString("pt-BR", {
-            month: "short",
-            year: "numeric"
-        })
-
-        membro_desde.textContent = `Membro desde ${membroDesde}`
-
-        quantidade_post.textContent = resultado.data._count.publicacao
-        quantidade_curtida.textContent = resultado.data.totalCurtidas
+            quantidade_post.textContent = resultado.data._count.publicacao
+            quantidade_curtida.textContent = resultado.data.totalCurtidas
         }
     }
 
@@ -110,7 +109,6 @@ async function carregarPost() {
             publicacoes = resultado.data.usuario.publicacao;
 
         } else {
-            // Posts do próprio usuário
             if (!token) {
                 throw new Error("Usuário não autenticado.");
             }

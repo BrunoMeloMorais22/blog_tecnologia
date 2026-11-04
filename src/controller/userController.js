@@ -67,14 +67,15 @@ exports.editarPerfil = async(req, res, next) =>{
     try{
         const usuarioId = req.usuario.id
 
-        const { nome, email, descricao, website } = req.body
+        const { nome, email, descricao, website, username } = req.body
 
         const result = await userService.editarPerfil(
             usuarioId,
             nome, 
             email,
             descricao,
-            website
+            website,
+            username
         )
 
         res.status(200).json({

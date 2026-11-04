@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,92 +9,80 @@
 </head>
 <body>
 
-<body>
-
     <div class="form-container">
-
         <form id="cadastroFormulario">
 
-            <h1>Faça seu cadastro</h1>
+            <h1 data-i18n="cadastro.titulo">Faça seu cadastro</h1>
 
             <div class="input-group">
-                <label for="nome">Nome</label>
-                <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    placeholder="Digite seu nome..."
-                    required
-                >
+                <label for="nome" data-i18n="cadastro.nome">Nome</label>
+                <input type="text" id="nome" name="nome"
+                    data-i18n-placeholder="cadastro.nomePlaceholder"
+                    placeholder="Digite seu nome..." required>
             </div>
 
             <div class="input-group">
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Digite seu email..."
-                    required
-                >
+                <label for="email" data-i18n="cadastro.email">Email</label>
+                <input type="email" id="email" name="email"
+                    data-i18n-placeholder="cadastro.emailPlaceholder"
+                    placeholder="Digite seu email..." required>
             </div>
 
             <div class="input-group">
-                <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Digite uma senha..."
-                    required
-                >
+                <label for="senha" data-i18n="cadastro.senha">Senha</label>
+                <input type="password" id="senha" name="senha"
+                    data-i18n-placeholder="cadastro.senhaPlaceholder"
+                    placeholder="Digite uma senha..." required>
             </div>
 
             <div class="input-group">
-                <label for="telefone">Telefone</label>
-                <input
-                    type="tel"
-                    id="telefone"
-                    name="telefone"
-                    placeholder="Digite seu telefone..."
-                >
+                <label for="telefone" data-i18n="cadastro.telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone"
+                    data-i18n-placeholder="cadastro.telefonePlaceholder"
+                    placeholder="Digite seu telefone..." required>
             </div>
 
             <div class="input-group">
-                <label for="descricao">Descrição</label>
-                <input
-                    type="text"
-                    id="descricao"
-                    name="descricao"
-                    placeholder="Conte um pouco sobre você (OPCIONAL)"
-                >
+                <label for="descricao" data-i18n="cadastro.descricao">Descrição</label>
+                <input type="text" id="descricao" name="descricao"
+                    data-i18n-placeholder="cadastro.descricaoPlaceholder"
+                    placeholder="Conte um pouco sobre você (OPCIONAL)">
             </div>
 
             <div class="input-group">
-                <label for="website">Website</label>
-                <input
-                    type="url"
-                    id="website"
-                    name="website"
-                    placeholder="Carregue seu site (OPCIONAL)"
-                >
+                <label for="website" data-i18n="cadastro.website">Website</label>
+                <input type="url" id="website" name="website"
+                    data-i18n-placeholder="cadastro.websitePlaceholder"
+                    placeholder="Informe seu site (OPCIONAL)">
             </div>
 
-            <button type="submit">
+            <div class="input-group">
+                <label for="username" data-i18n="cadastro.username">Username</label>
+                <input type="text" id="username" name="username"
+                    data-i18n-placeholder="cadastro.usernamePlaceholder"
+                    placeholder="Crie um username" required>
+            </div>
+
+            <button type="submit" data-i18n="cadastro.registrar">
                 Fazer cadastro
             </button>
-            
+
             <br><br>
+
             <div class="links-extras">
-                <a href="/login">Já tem uma conta? Faça login</a>
+                <a href="/login" data-i18n="cadastro.login">
+                    Já tem uma conta? Faça login
+                </a>
             </div>
 
             <div id="mensagem"></div>
-        </form>
 
+        </form>
     </div>
+
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="../js/idioma.js"></script>
     <script src="../js/cadastro.js"></script>
-</body>
-</html>
+
 </body>
 </html>

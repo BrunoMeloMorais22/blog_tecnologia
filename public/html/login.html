@@ -14,31 +14,20 @@
 
         <form id="loginFormulario">
 
-            <h1>Faça seu login</h1>
+            <h1 data-i18n="login.titulo"> Faça seu login</h1>
 
             <div class="input-group">
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Digite seu email..."
-                    required
+                <label for="email" data-i18n="login.email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email..." required
                 >
             </div>
 
             <div class="input-group">
-                <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Digite uma senha..."
-                    required
-                >
+                <label for="senha" data-i18n="login.senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite uma senha..." required>
             </div>
 
-            <button type="submit">
+            <button type="submit" data-i18n="login.entrar">
                 Fazer login
             </button>   <br><br>
 
@@ -50,6 +39,8 @@
         </form>
 
     </div>
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="../js/idioma.js"></script>
     <script src="../js/login.js"></script>
 </body>
 </html>

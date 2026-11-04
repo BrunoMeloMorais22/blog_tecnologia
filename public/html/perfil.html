@@ -14,7 +14,7 @@
     <main class="pagina-perfil">
         <header class="cabecalho">
             <div>
-                <h1>Meu perfil</h1>
+                <h1 id="titulo-perfil">Meu perfil</h1>
                 <p>Gerencie suas informações e acompanhe sua atividade</p>
             </div>
 
@@ -45,7 +45,7 @@
                                 <input type="text" id="inputNome" hidden>
                                 <h2 id="nome"></h2>
                             </div>
-                            <a href="#">@desenvolvedor.dev</a>
+                            <a href="#" id="username">@desenvolvedor.dev</a>
 
                             <input type="text" id="inputDescricao" hidden placeholder="Conte sobre você">
 
@@ -92,7 +92,7 @@
             <aside class="coluna-lateral">
 
                 <section class="card sobre-card">
-                    <h2>Sobre mim</h2>
+                    <h2 id="dinamico">Sobre mim</h2>
 
 
                     <div class="informacao-item">
@@ -141,5 +141,7 @@
     </main>
 
 </body>
+<script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+<script src="../js/idioma.js"></script>
 <script src="../js/perfil.js" defer></script>
 </html>

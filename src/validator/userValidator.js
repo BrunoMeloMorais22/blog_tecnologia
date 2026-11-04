@@ -10,7 +10,9 @@ const registerSchema = z.object({
     telefone: z.string()
         .regex(/^\d{11}$/, "Telefone deve conter exatamente 11 números"),
     descricao: z.string().optional(),
-    website: z.string().optional()
+    website: z.string().optional(),
+    username: z.string()
+        .optional()
 })
 
 const logisSchema = z.object({

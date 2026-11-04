@@ -1,0 +1,33 @@
+{
+    "geral": {
+        "inicio": "Home",
+        "perfil": "Profile",
+        "configuracoes": "Settings",
+        "sair": "Log out",
+        "cancelar": "Cancel",
+        "salvar": "Save",
+        "voltar": "Back"
+    },
+    "configuracoes": {
+        "titulo": "Settings",
+        "descricao": "Manage your preferences and account information",
+        "senha": "Change password",
+        "excluir": "Delete account",
+        "aparencia": "Appearance mode",
+        "idioma": "Language"
+    },
+    "login": {
+        "titulo": "Welcome back",
+        "email": "Email",
+        "senha": "Password",
+        "entrar": "Log in",
+        "cadastro": "Don't have an account? Sign up"
+    },
+    "cadastro": {
+        "titulo": "Create account",
+        "nome": "Full name",
+        "email": "Email",
+        "senha": "Password",
+        "registrar": "Sign up"
+    }
+}

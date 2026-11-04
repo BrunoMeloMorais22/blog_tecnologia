@@ -20,6 +20,7 @@ model Usuario {
   telefone    String
   descricao   String?
   website     String?
+  username    String       @unique
   role Role @default(USER)
   criadoEm  DateTime @default(now())
   comentarios Comentario[]
