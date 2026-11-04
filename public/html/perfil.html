@@ -14,11 +14,11 @@
     <main class="pagina-perfil">
         <header class="cabecalho">
             <div>
-                <h1 id="titulo-perfil">Meu perfil</h1>
-                <p>Gerencie suas informações e acompanhe sua atividade</p>
+                <h1 id="titulo-perfil" data-i18n="perfil.titulo">Meu perfil</h1>
+                <p data-i18n="perfil.descricao">Gerencie suas informações e acompanhe sua atividade</p>
             </div>
 
-            <button class="botao-editar" onclick="alternarEdicaoPerfil()" type="button">✎ Editar perfil</button>
+            <button class="botao-editar" onclick="alternarEdicaoPerfil()" type="button" data-i18n="perfil.editar_perfil">✎ Editar perfil</button>
             
         </header>
         <div class="layout-perfil">
@@ -98,7 +98,7 @@
                     <div class="informacao-item">
                         <span class="info-icone">✉</span>
                         <div>
-                            <span>Email</span>
+                            <span data-i18n="perfil.email">Email</span>
                             <input type="email" id="inputEmail" hidden>
                             <strong id="email"></strong>
                         </div>
@@ -107,7 +107,7 @@
                     <div class="informacao-item">
                         <span class="info-icone">⌖</span>
                         <div>
-                            <span>Localização</span>
+                            <span data-i18n="perfil.localização">Localização</span>
                             <strong>Brasil</strong>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <div class="informacao-item">
                         <span class="info-icone">↗</span>
                         <div>
-                            <span>Website</span>
+                            <span data-i18n="perfil.website">Website</span>
                             <input type="url" id="inputWebsite" hidden>
                             <strong id="website"></strong>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="informacao-item">
                         <span class="info-icone">◉</span>
                         <div>
-                            <span>GitHub</span>
+                            <span data-i18n="perfil.github">GitHub</span>
                             <strong>github.com/desenvolvedor</strong>
                         </div>
                     </div>

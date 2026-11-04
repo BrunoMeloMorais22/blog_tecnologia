@@ -1,0 +1,69 @@
+{
+    "geral": {
+        "inicio": "Inicio",
+        "perfil": "Perfil",
+        "configuracoes": "Configuración",
+        "sair": "Cerrar sesión",
+        "cancelar": "Cancelar",
+        "salvar": "Guardar",
+        "voltar": "Volver",
+        "contato": "Contacto",
+        "sobre": "Acerca de",
+        "categoria": "Categoría",
+        "criar_post": "Crear publicación",
+        "ver_categorias": "Ver categoría",
+        "explorar_artigos": "Explorar artículos",
+        "explorar": "Explorar",
+        "categorias": "Categoría",
+        "frase_efeito": "Tecnología que transforma ideas",
+        "descricao": "Crea tus publicaciones, comparte artículos y experiencias sobre programación y el mundo de la tecnología.",
+        "minha_conta": "Mi cuenta",
+        "menu_principal": "Menú principal",
+        "posts_publicados": "Publicaciones",
+        "comunidade": "Mira lo que comparte la comnunidad"
+    },
+    "configuracoes": {
+        "titulo": "Configuración",
+        "descricao": "Administra tus preferencias e información de cuenta",
+
+        "senha": "Cambiar contraseña",
+        "texto_senha": "Cambia tu contraseña y haz que tu cuenta sea más segura.",
+
+        "excluir": "Eliminar cuenta",
+        "texto_excluir": "Elimina permanentemente tu cuenta y todos tus datos.",
+
+        "aparencia": "Modo de apariencia",
+        "texto_aparencia": "Elige entre el modo claro y oscuro.",
+        "idioma": "Idioma"
+    },
+    "login": {
+        "titulo": "Bienvenido de nuevo",
+        "email": "Correo electrónico",
+        "senha": "Contraseña",
+        "entrar": "Iniciar sesión",
+        "cadastro": "¿No tienes una cuenta? Regístrate",
+        "esqueci_senha": "Olvidé mi contraseña"
+    },
+    "cadastro": {
+        "titulo": "Crear una cuenta",
+        "nome": "Nombre completo",
+        "email": "Correo electrónico",
+        "senha": "Contraseña",
+        "telefone": "Teléfono",
+        "descricao": "Descripción",
+        "website": "Sitio web",
+        "username": "Nombre de usuario",
+        "registrar": "Registrarse",
+        "login": "¿Ya tienes una cuenta? Inicia sesión"
+    },
+
+    "perfil": {
+        "titulo": "Mi perfil",
+        "descricao": "Gestiona tu información y realiza un seguimiento de tu actividad.",
+        "editar_perfil": "Editar Perfil",
+        "email": "Correo electrónico",
+        "localização": "Ubicación",
+        "website": "Sitio web",
+        "github": "GitHub"
+    }
+}

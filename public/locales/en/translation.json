@@ -6,28 +6,68 @@
         "sair": "Log out",
         "cancelar": "Cancel",
         "salvar": "Save",
-        "voltar": "Back"
+        "voltar": "Back",
+        "sobre": "About",
+        "contato": "Contact",
+        "categoria": "Category",
+        "categorias": "Categorys",
+        "frase_efeito": "Technology that transforms ideas",
+        "descricao": "Create posts, share articles and experiences about programming and the world of technology",
+        "criar_post": "Create post",
+        "explorar_artigos": "Explore articles",
+        "ver_categorias": "See categorories",
+        "explorar": "Explore",
+        "minha_conta": "My account",
+        "menu_principal": "Main menu",
+        "posts_publicados": "Published Posts",
+        "comunidade": "See what the commnunity is sharing"
     },
+
     "configuracoes": {
         "titulo": "Settings",
         "descricao": "Manage your preferences and account information",
         "senha": "Change password",
+        "texto_senha": "Change your password and make your account more secure.",
+
+
         "excluir": "Delete account",
+        "texto_excluir": "Permanently delete your account and all your data",
+
         "aparencia": "Appearance mode",
+        "texto_aparencia": "Choose bethween light mode our dark mode",
         "idioma": "Language"
     },
+
     "login": {
         "titulo": "Welcome back",
         "email": "Email",
         "senha": "Password",
         "entrar": "Log in",
-        "cadastro": "Don't have an account? Sign up"
+        "cadastro": "Don't have an account? Sign up",
+        "esqueci_senha": "I forgot my password"
     },
+
     "cadastro": {
         "titulo": "Create account",
         "nome": "Full name",
         "email": "Email",
         "senha": "Password",
-        "registrar": "Sign up"
+        "telefone": "Phone",
+        "descricao": "Description",
+        "website": "Website",
+        "username": "Username",
+        "registrar": "Sign up",
+        "login": "Already hava an account? Log in"
+    },
+
+    "perfil": {
+        "titulo": "My profile",
+        "descricao": "Manage your informations and follow your activity",
+        "sobre_mim": "About Me",
+        "email": "Email",
+        "localização": "Localization",
+        "website": "Website",
+        "github": "GitHub",
+        "editar_perfil": "Edit profile"
     }
 }

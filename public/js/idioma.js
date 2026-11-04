@@ -14,6 +14,10 @@ async function iniciarIdioma() {
             },
             "en": {
                 translation: await fetch("/locales/en/translation.json").then(r => r.json())
+            },
+
+            "es": {
+                translation: await fetch("/locales/es/translation.json").then(r => r.json())
             }
         }
     });
