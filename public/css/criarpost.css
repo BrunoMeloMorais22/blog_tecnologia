@@ -4,7 +4,7 @@ body {
     min-height: 100vh;
     font-family: "Merriweather", serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    font-weight: 400;
     font-style: normal;
     font-variation-settings:
     "wdth" 100;
@@ -191,12 +191,26 @@ body {
     transform: scale(0.99);
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        margin-right: 0;
+        padding: 25px 15px;
+        justify-content: center;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
 
     #criar-post {
-        margin: 40px auto;
-        padding: 0 18px;
+        width: 100%;
+        max-width: 760px;
+        margin: 30px auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .cabecalho-post {
+        margin-bottom: 30px;
     }
 
     .cabecalho-post h1 {
@@ -204,10 +218,70 @@ body {
     }
 
     .cabecalho-post p {
-        font-size: 15px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    #postFormulario {
+        gap: 22px;
+    }
+
+    .campo input[type="text"],
+    .campo textarea {
+        font-size: 16px;
+    }
+
+    .campo textarea {
+        min-height: 180px;
     }
 
     .upload-imagem {
         min-height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    #criar-post {
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .cabecalho-post h1 {
+        font-size: 25px;
+    }
+
+    .cabecalho-post span {
+        font-size: 12px;
+    }
+
+    .cabecalho-post p {
+        font-size: 13px;
+    }
+
+    .campo label {
+        font-size: 14px;
+    }
+
+    .campo input[type="text"],
+    .campo textarea {
+        padding: 13px;
+        font-size: 16px;
+    }
+
+    .campo textarea {
+        min-height: 160px;
+    }
+
+    .upload-imagem {
+        min-height: 130px;
+    }
+
+    #postFormulario button {
+        height: 48px;
+        font-size: 14px;
     }
 }

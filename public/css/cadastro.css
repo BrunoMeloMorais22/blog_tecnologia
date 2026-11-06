@@ -11,7 +11,7 @@ body {
     min-height: 100vh;
     font-family: "Merriweather", serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    font-weight: 400;
     font-style: normal;
     font-variation-settings:
     "wdth" 100;
@@ -109,4 +109,84 @@ button:hover {
 
 .links-extras > a:hover{
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        justify-content: center;
+        align-items: center;
+        margin-right: 0;
+        padding: 30px 20px;
+        background-position: center;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 450px;
+        padding: 30px 25px;
+        margin: 0;
+    }
+
+    .form-container h1 {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .links-extras {
+        text-align: center;
+    }
+
+    .links-extras a {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    #mensagem {
+        overflow-wrap: anywhere;
+        text-align: center;
+        font-size: 13px;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 20px 12px;
+    }
+
+    .form-container {
+        padding: 25px 18px;
+    }
+
+    .form-container h1 {
+        font-size: 21px;
+    }
+
+    .input-group {
+        margin-bottom: 14px;
+    }
+
+    .input-group input {
+        padding: 11px;
+    }
 }
