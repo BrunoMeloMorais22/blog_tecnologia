@@ -678,3 +678,98 @@ button > a {
 .menu-opcoes button:last-child {
     color: #e53935;
 }
+
+@media (max-width: 768px) {
+
+    #hero {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    #hero > h1 {
+        margin-left: 0;
+        font-size: 25px;
+    }
+
+    #navegacao {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    #botoes {
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    #introducao {
+        min-height: 420px;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    #titulo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #titulo h1 {
+        font-size: 32px;
+    }
+
+    #titulo p {
+        font-size: 16px;
+    }
+
+    #calltoaction {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 250px;
+        align-items: stretch;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.aberta {
+        transform: translateX(0);
+    }
+
+    .sidebar.fechada {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-logo {
+        justify-content: flex-start;
+    }
+
+    .sidebar-logo > span,
+    .section-title,
+    .sidebar-link > span:not(.sidebar-icon),
+    .user-info,
+    .user-more {
+        display: initial;
+    }
+
+    .sidebar-section,
+    .sidebar-nav {
+        width: 100%;
+    }
+
+    .sidebar-link {
+        justify-content: flex-start;
+        padding: 12px;
+    }
+
+    .sidebar-bottom {
+        justify-content: flex-start;
+    }
+}
