@@ -23,13 +23,20 @@ document.getElementById("cadastroFormulario").addEventListener("submit", async f
 
     const resultado = await response.json()
 
-    if (resultado.error?.includes("Username já existe")) {
-    mensagem.textContent = resultado.error
-} else if (resultado.errors) {
-    mensagem.innerHTML = resultado.errors.map(erro => erro.message).join("<br>")
-} else {
-    mensagem.textContent = resultado.error
-}
+    if(response.ok){
+        mensagem.textContent = resultado.data.message
+        mensagem.style.color = "green"
 
-mensagem.style.color = "red"
+        setTimeout(() => {
+            window.location.href = "/login"
+        }, 1500)
+    } else{
+        if(resultado.errors){
+            mensagem.innerHTML = resultado.errors.map(erro => erro.message).join("<br>")
+        } else{
+            mensagem.textContent = resultado.error
+        }
+
+        mensagem.style.color = "red"
+    }
 })
