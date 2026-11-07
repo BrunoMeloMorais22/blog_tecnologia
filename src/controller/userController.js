@@ -152,3 +152,26 @@ exports.buscarPerfilPublico = async(req, res, next) => {
         data: resultado
     })
 } 
+
+exports.alterarSenha = async(req, res, next) => {
+    try{
+        const { senhaAtual, novaSenha, confirmarSenha } = req.body
+        const idUsuario = req.usuario.id
+
+        const resultado = await userService.alterarSenha(
+            idUsuario,
+            senhaAtual,
+            novaSenha,
+            confirmarSenha
+        )
+
+        return res.status(200).json({
+            message: "Senha alterada com sucesso",
+            data: resultado
+        })
+    }
+    
+    catch(erro){
+        next(erro)
+    }
+}

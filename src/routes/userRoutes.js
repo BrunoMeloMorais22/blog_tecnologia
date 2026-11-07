@@ -12,5 +12,6 @@ router.put("/perfil/:id", auth, userController.editarPerfil)
 router.get("/perfil/me", auth, userController.perfilInformacoes)
 router.get("/admin", auth, authorize('ADMIN'), userController.pegarInformacoes)
 router.get("/perfil/:usuarioId", userController.buscarPerfilPublico)
+router.put("/alterar_senha", auth, userController.alterarSenha)
 
 module.exports = router

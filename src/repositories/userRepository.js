@@ -118,3 +118,24 @@ exports.buscarPerfilPublico = async(usuarioId) => {
         }
     })
 }
+
+
+exports.findById = async(idUsuario) => {
+    return await prisma.usuario.findUnique({
+        where: {
+            id: idUsuario
+        }
+    })
+}
+
+exports.update = async(idUsuario, novaSenhaHash) => {
+    return await prisma.usuario.update({
+        where: {
+            id: idUsuario
+        },
+
+        data: {
+            senha: novaSenhaHash
+        }
+    })
+}

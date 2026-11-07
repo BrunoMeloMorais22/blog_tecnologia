@@ -1,0 +1,138 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Merriweather", serif;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/telacadastro.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 35px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.form-container h1 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.form-container p {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #6366f1;
+    color: white;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+#mensagem {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 18px;
+    }
+
+    .form-container {
+        padding: 30px 22px;
+    }
+
+    .form-container h1 {
+        font-size: 21px;
+    }
+
+    .input-group input {
+        padding: 13px;
+        font-size: 16px;
+    }
+}

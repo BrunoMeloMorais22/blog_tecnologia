@@ -42,6 +42,10 @@ app.get("/configuracoes", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/html/configurações.html"))
 })
 
+app.get("/alterar_senha", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/html/alterar_senha.html"))
+})
+
 app.use(errorHandler)
 
 module.exports = app;

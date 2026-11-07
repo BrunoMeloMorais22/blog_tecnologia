@@ -774,16 +774,3 @@ button > a {
     }
 }
 
-:root {
-    --cor-fundo: #ffffff;
-    --cor-texto: #222222;
-    --cor-card: #f5f5f5;
-    --cor-borda: #dddddd;
-}
-
-[data-theme="escuro"] {
-    --cor-fundo: #121212;
-    --cor-texto: #ffffff;
-    --cor-card: #1e1e1e;
-    --cor-borda: #333333;
-}

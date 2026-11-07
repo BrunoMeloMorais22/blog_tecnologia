@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/alterar_senha.css">
+</head>
+<body>
+    <form class="form-container" id="formAlterarSenha">
+    <h1>Alteração de senha</h1>
+
+    <div class="input-group">
+        <label for="senhaAtual">Senha atual</label>
+        <input type="password" placeholder="Digite sua senha atual" id="senhaAtual" required>
+    </div>
+
+    <div class="input-group">
+        <label for="novaSenha">Nova senha</label>
+        <input type="password" placeholder="Digite sua nova senha" id="novaSenha" required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="confirmarSenha">Confirmar nova senha</label>
+        <input type="password" placeholder="Confirme sua nova senha" id="confirmarSenha" required>
+    </div>
+
+    <button type="submit">Alterar senha</button>
+
+    <div id="mensagem"></div>
+</form>
+</body>
+</html>

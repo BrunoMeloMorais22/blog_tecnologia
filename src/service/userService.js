@@ -161,3 +161,46 @@ exports.buscarPerfilPublico = async(usuarioId) => {
         usuario
     }
 }
+
+exports.alterarSenha = async(idUsuario, senhaAtual, novaSenha, confirmarSenha) => {
+    const usuario = await userRepository.findById(idUsuario)
+
+    if(!usuario){
+        throw new AppError("Usuário não existe ou não autenticado");
+    }
+
+    if(!senhaAtual || !novaSenha || !confirmarSenha){
+        throw new AppError("Preencha todos os campos");
+    }
+
+    if(novaSenha != confirmarSenha){
+        throw new AppError("As senhas não coincidem. Tente novamente");
+    }
+
+    const senhaCorreta = await bcrypt.compare(
+        senhaAtual,
+        usuario.senha
+    )
+
+    if(!senhaCorreta){
+        throw new AppError("Senha atual incorreta");   
+    }
+
+    const mesmaSenha = await bcrypt.compare(novaSenha, usuario.senha)
+
+    if(mesmaSenha){
+        throw new AppError("A nova senha deve ser diferente da atual");
+        
+    }
+
+    const novaSenhaHash = await bcrypt.hash(novaSenha, 10)
+
+    await userRepository.update(
+        idUsuario,
+        novaSenhaHash
+    )
+
+    return {
+        message: "Senha alterada com sucesso"
+    }
+}
