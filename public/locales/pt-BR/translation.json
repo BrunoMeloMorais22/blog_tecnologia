@@ -41,7 +41,8 @@
         "email": "E-mail",
         "senha": "Senha",
         "entrar": "Entrar",
-        "cadastro": "Não possui uma conta? Cadastre-se"
+        "cadastro": "Não possui uma conta? Cadastre-se",
+        "esqueci_senha": "Esqueci minha senha"
     },
     "cadastro": {
         "titulo": "Faça seu cadastro",

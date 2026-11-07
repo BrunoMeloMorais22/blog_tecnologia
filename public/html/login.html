@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de login</title>
+    
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -18,13 +19,13 @@
 
             <div class="input-group">
                 <label for="email" data-i18n="login.email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu email..." required
+                <input type="email" id="email" name="email" data-i18n-placeholder="login.emailPlaceholder" placeholder="Digite seu email..." required
                 >
             </div>
 
             <div class="input-group">
                 <label for="senha" data-i18n="login.senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Digite uma senha..." required>
+                <input type="password" id="senha" name="senha" data-i18n-placeholder="login.senhaPlaceholder" placeholder="Digite uma senha..." required>
             </div>
 
             <button type="submit" data-i18n="login.entrar">

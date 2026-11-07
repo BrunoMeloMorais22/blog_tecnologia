@@ -30,6 +30,11 @@ function traduzirPagina() {
         const chave = elemento.getAttribute("data-i18n");
         elemento.textContent = i18n.t(chave);
     });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(elemento => {
+        const chave = elemento.getAttribute("data-i18n-placeholder");
+        elemento.placeholder = i18n.t(chave);
+    });
 }
 
 async function trocarIdioma(novoIdioma) {

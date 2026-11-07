@@ -41,7 +41,11 @@
     "login": {
         "titulo": "Welcome back",
         "email": "Email",
+        "emailPlaceholder": "Enter your email...",
+
         "senha": "Password",
+        "senhaPlaceholder": "Enter your password...",
+        
         "entrar": "Log in",
         "cadastro": "Don't have an account? Sign up",
         "esqueci_senha": "I forgot my password"
@@ -49,14 +53,30 @@
 
     "cadastro": {
         "titulo": "Create account",
+
         "nome": "Full name",
+        "nomePlaceholder": "Enter your name...",
+
         "email": "Email",
+        "emailPlaceholder": "Enter your email...",
+
         "senha": "Password",
+        "senhaPlaceholder": "Enter your password...",
+
         "telefone": "Phone",
+        "telefonePlaceholder": "Enter your phone number...",
+
         "descricao": "Description",
+        "descricaoPlaceholder": "Tell me a little about yourself (OPTIONAL)",
+
         "website": "Website",
+        "websitePlaceholder": "WebSite (OPTIONAL)",
+
         "username": "Username",
+        "usernamePlaceholder": "Create an username",
+
         "registrar": "Sign up",
+
         "login": "Already hava an account? Log in"
     },
 

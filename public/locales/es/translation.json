@@ -39,7 +39,11 @@
     "login": {
         "titulo": "Bienvenido de nuevo",
         "email": "Correo electrónico",
+        "emailPlaceholder": "Introduce tu correo electrónico...",
+
         "senha": "Contraseña",
+        "senhaPlaceholder": "Introduce tu contraseña...",
+
         "entrar": "Iniciar sesión",
         "cadastro": "¿No tienes una cuenta? Regístrate",
         "esqueci_senha": "Olvidé mi contraseña"
@@ -47,12 +51,26 @@
     "cadastro": {
         "titulo": "Crear una cuenta",
         "nome": "Nombre completo",
+        "nomePlaceholder": "Introduce tu nombre...",
+
         "email": "Correo electrónico",
+        "emailPlaceholder": "Introduce tu correo electrónico...",
+
         "senha": "Contraseña",
+        "senhaPlaceholder": "Introduce tu contraseña...",  
+
         "telefone": "Teléfono",
+        "telefonePlaceholder": "Introduce tu número de teléfono...",
+
         "descricao": "Descripción",
+        "descricaoPlaceholder": "Cuéntanos un poco sobre ti (OPCIONAL)",
+
         "website": "Sitio web",
+        "websitePlaceholder": "Sitio web (OPCIONAL)",
+
         "username": "Nombre de usuario",
+        "usernamePlaceholder": "Crea un nombre de usuario",
+
         "registrar": "Registrarse",
         "login": "¿Ya tienes una cuenta? Inicia sesión"
     },
