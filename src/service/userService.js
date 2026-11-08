@@ -108,7 +108,7 @@ exports.editarPerfil = async(usuarioId, nome, email, descricao, website) => {
         throw new AppError("Nome não pode ser vazio", 400);
     }
 
-    const usuario = await userRepository.update(
+    const usuario = await userRepository.updatePerfil(
         usuarioId,
         nome, 
         email,
@@ -195,12 +195,30 @@ exports.alterarSenha = async(idUsuario, senhaAtual, novaSenha, confirmarSenha) =
 
     const novaSenhaHash = await bcrypt.hash(novaSenha, 10)
 
-    await userRepository.update(
+    await userRepository.updateSenha(
         idUsuario,
         novaSenhaHash
     )
 
     return {
         message: "Senha alterada com sucesso"
+    }
+}
+
+exports.atualizarFotoPerfil = async(idUsuario, fotoPerfil) => {
+    const usuario = await userRepository.findById(idUsuario)
+
+    if(!usuario){
+        throw new AppError("Usuário não existe");
+        
+    }
+    await userRepository.updateFotoPerfil(
+        idUsuario, 
+        fotoPerfil
+    )
+
+    return {
+        message: "Foto alterada com sucesso",
+        fotoPerfil
     }
 }

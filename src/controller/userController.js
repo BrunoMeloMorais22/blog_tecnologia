@@ -3,6 +3,7 @@ const postService = require('../service/postService')
 const userService = require('../service/userService')
 const AppError = require('../utils/AppError')
 const { registerSchema } = require('../validator/userValidator')
+const uploadImagem = require('../service/cloudinaryService');
 
 exports.createUser = async(req, res, next) => {
     try{
@@ -175,3 +176,31 @@ exports.alterarSenha = async(req, res, next) => {
         next(erro)
     }
 }
+
+exports.atualizarFotoPerfil = async (req, res, next) => {
+    try {
+        if (!req.file) {
+            throw new Error("Nenhuma imagem foi enviada");
+        }
+
+        const idUsuario = req.usuario.id;
+
+        const imagem = await uploadImagem(
+            req.file.buffer,
+            'perfis'
+        );
+
+        const resultado = await userService.atualizarFotoPerfil(
+            idUsuario,
+            imagem.url
+        );
+
+        return res.status(200).json({
+            message: "Foto atualizada com sucesso",
+            data: resultado
+        });
+
+    } catch (erro) {
+        next(erro);
+    }
+};

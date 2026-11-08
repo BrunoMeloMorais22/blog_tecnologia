@@ -4,6 +4,7 @@ const userController = require('../controller/userController')
 const rateLimit = require("../middleware/rateLimiter")
 const auth = require("../middleware/auth")
 const authorize = require("../middleware/authorize")
+const uploadPerfil = require("../middleware/uploadPerfil")
 
 router.post("/create_user", userController.createUser)
 router.post("/login_user", rateLimit, userController.loginUser)
@@ -13,5 +14,6 @@ router.get("/perfil/me", auth, userController.perfilInformacoes)
 router.get("/admin", auth, authorize('ADMIN'), userController.pegarInformacoes)
 router.get("/perfil/:usuarioId", userController.buscarPerfilPublico)
 router.put("/alterar_senha", auth, userController.alterarSenha)
+router.put("/atualizar_foto_perfil", auth, uploadPerfil.single("fotoPerfil"), userController.atualizarFotoPerfil)
 
 module.exports = router

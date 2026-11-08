@@ -51,6 +51,7 @@ exports.findByUserId = async (usuarioId) => {
             website: true,
             criadoEm: true,
             username: true,
+            fotoPerfil: true,
 
             _count: {
                 select: {
@@ -71,7 +72,7 @@ exports.findByUserId = async (usuarioId) => {
     });
 };
 
-exports.update = async(usuarioId, nome, email, descricao, website, username) => {
+exports.updatePerfil = async(usuarioId, nome, email, descricao, website, username) => {
     return await prisma.usuario.update({
         where:{
             id: usuarioId
@@ -107,6 +108,7 @@ exports.buscarPerfilPublico = async(usuarioId) => {
             website: true,
             criadoEm: true,
             username: true,
+            fotoPerfil: true,
             publicacao: {
                 select: {
                     id: true,
@@ -128,7 +130,7 @@ exports.findById = async(idUsuario) => {
     })
 }
 
-exports.update = async(idUsuario, novaSenhaHash) => {
+exports.updateSenha = async(idUsuario, novaSenhaHash) => {
     return await prisma.usuario.update({
         where: {
             id: idUsuario
@@ -136,6 +138,19 @@ exports.update = async(idUsuario, novaSenhaHash) => {
 
         data: {
             senha: novaSenhaHash
+        }
+    })
+}
+
+
+exports.updateFotoPerfil = async(idUsuario, fotoPerfil) => {
+    return await prisma.usuario.update({
+        where: {
+            id: idUsuario
+        },
+
+        data:{
+            fotoPerfil
         }
     })
 }

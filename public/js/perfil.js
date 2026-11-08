@@ -52,6 +52,17 @@ async function carregarInformacoes() {
         const resultado = await response.json(); 
 
         const usuario = perfilPublico ? resultado.data.usuario : resultado.data
+        console.log("Foto recebida da API:", usuario.fotoPerfil);
+
+        const avatar = document.querySelector(".avatar");
+
+        if (usuario.fotoPerfil) {
+    avatar.src = usuario.fotoPerfil.startsWith("https://")
+        ? usuario.fotoPerfil
+        : `${API_URL}/upload/perfis/${usuario.fotoPerfil}`;
+} else {
+    avatar.src = "../img/fundojpg.jpg";
+}
 
         
         tituloPerfil.textContent = perfilPublico ? `Perfil de ${usuario.nome}` : "Meu perfil";
@@ -270,18 +281,59 @@ async function editarPerfil() {
     }
 }
 
-async function alternarEdicaoPerfil() {
-    const botaoEditar = document.querySelector(".botao-editar");
+async function atualizarFotoPerfil(formData) {
+    try {
+        const response = await fetch(`${API_URL}/users/atualizar_foto_perfil`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: formData
+        });
 
-    if (botaoEditar.textContent.includes("Salvar edição")) {
-        await editarPerfil();
-    } else {
-        ativarEdicaoPerfil();
+        const resultado = await response.json();
+        console.log("Retorno completo:", resultado);
+
+        if (!response.ok) {
+            throw new Error(resultado.error || "Erro ao atualizar foto");
+        }
+
+        const avatar = document.querySelector(".avatar");
+
+        avatar.src = resultado.data.fotoPerfil ? resultado.data.fotoPerfil : "../img/fundojpg.jpg";
+
+        console.log(resultado.message);
+
+    } catch (erro) {
+        console.error("Erro:", erro.message);
     }
 }
 
+function ativarUploadFoto() {
+    if(perfilPublico) {
+        return
+    }
+    
+    const avatar = document.querySelector(".avatar");
+    const fotoPerfil = document.getElementById("fotoPerfil");
 
-console.log(usuarioId)
+    avatar.addEventListener("click", () => {
+        fotoPerfil.click();
+    });
+
+    fotoPerfil.addEventListener("change", () => {
+        const arquivo = fotoPerfil.files[0];
+
+        if (!arquivo) return;
+
+        const formData = new FormData();
+        formData.append("fotoPerfil", arquivo);
+
+        atualizarFotoPerfil(formData);
+    });
+}
+
+ativarUploadFoto();
 
 carregarInformacoes()
 carregarPost();

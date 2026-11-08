@@ -39,7 +39,11 @@
     "login": {
         "titulo": "Bem-vindo de volta",
         "email": "E-mail",
+        "emailPlaceholder":"Digite seu email...",
+        
         "senha": "Senha",
+        "senhaPlaceholder": "Digite uma senha...",
+
         "entrar": "Entrar",
         "cadastro": "Não possui uma conta? Cadastre-se",
         "esqueci_senha": "Esqueci minha senha"

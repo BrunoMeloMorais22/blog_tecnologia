@@ -33,7 +33,9 @@ exports.getPosts = async (usuarioId) => {
 
             usuario: {
                 select: {
-                    nome: true
+                    nome: true,
+                    username: true,
+                    fotoPerfil: true
                 }
             },
 

@@ -21,6 +21,7 @@ model Usuario {
   descricao String?
   website   String?
   username  String   @unique
+  fotoPerfil String?
   role      Role     @default(USER)
   criadoEm  DateTime @default(now())
 
