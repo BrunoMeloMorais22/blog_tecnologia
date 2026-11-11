@@ -1,5 +1,5 @@
 
-const API_URL = "https://blog-tecnologia-ifup.onrender.com"
+const API_URL = `http://localhost:3000`
 const mensagem = document.getElementById("mensagem")
 
 document.getElementById("loginFormulario").addEventListener("submit", async function(event) {

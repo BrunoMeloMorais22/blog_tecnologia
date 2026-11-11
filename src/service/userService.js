@@ -222,3 +222,17 @@ exports.atualizarFotoPerfil = async(idUsuario, fotoPerfil) => {
         fotoPerfil
     }
 }
+
+exports.deletarUsuario = async(usuarioId) => {
+    const usuario = await userRepository.findById(usuarioId)
+
+    if(!usuario){
+        throw new AppError("Usuário não existe");
+    }
+
+    const result = await userRepository.delete(
+        usuarioId
+    )
+
+    return result
+}

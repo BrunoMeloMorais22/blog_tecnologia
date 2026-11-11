@@ -154,3 +154,11 @@ exports.updateFotoPerfil = async(idUsuario, fotoPerfil) => {
         }
     })
 }
+
+exports.delete = async(idUsuario) => {
+    return await prisma.usuario.delete({
+        where:{
+            id: idUsuario
+        }
+    })
+}

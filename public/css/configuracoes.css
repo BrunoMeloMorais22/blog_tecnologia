@@ -218,3 +218,161 @@ aside p {
         margin: 20px 15px;
     }
 }
+
+form {
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+form h1 {
+    margin-top: 0;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+
+form p {
+    color: #9ca3af;
+    line-height: 1.5;
+}
+
+form h2 {
+    font-size: 18px;
+    margin-top: 25px;
+}
+
+
+form ul {
+    padding-left: 20px;
+    color: #d1d5db;
+}
+
+form li {
+    margin-bottom: 10px;
+}
+
+
+form strong {
+    display: block;
+    margin: 25px 0;
+    color: #ef4444;
+    font-size: 13px;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    background: #111827;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    color: white;
+    outline: none;
+}
+
+form input:focus {
+    border-color: #3b82f6;
+}
+
+form button {
+    padding: 12px 16px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#cancelar {
+    background: #374151;
+    color: white;
+}
+
+#cancelar:hover {
+    background: #4b5563;
+}
+
+#excluirConta {
+    background: #dc2626;
+    color: white;
+}
+
+#excluirConta:hover:not(:disabled) {
+    background: #b91c1c;
+}
+
+#excluirConta:disabled {
+    background: #7f1d1d;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 500px) {
+    form {
+        margin: 15px;
+        padding: 22px;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+}
+
+.modal.ativo {
+    display: flex;
+}
+
+.modal form {
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    background: #1f2937;
+    color: #f9fafb;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.modal input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.modal button {
+    padding: 12px 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.modal #excluirConta {
+    background: #dc2626;
+    color: white;
+}
+
+.modal #cancelar {
+    background: #374151;
+    color: white;
+}

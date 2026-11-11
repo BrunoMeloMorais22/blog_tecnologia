@@ -8,6 +8,33 @@
     <link rel="stylesheet" href="../css/configuracoes.css">
 </head>
 <body>
+
+    <div id="modalExclusao" class="modal">
+    <form>
+        <h1>Exclusão de conta</h1>
+        <p>Você está prestes a excluir permanentemente sua conta do DevBlog</p>
+
+        <h2>O que será excluído</h2>
+        <ul>
+            <li>Sua conta e suas informações pessoais</li>
+            <li>Suas publicações</li>
+            <li>Seus comentários</li>
+            <li>Suas curtidas</li>
+        </ul>
+
+        <strong>ESSA AÇÃO É PERMANENTE E NÃO PODERÁ SER DESFEITA</strong>
+
+        <label for="confirmacaoExclusao">Digite EXCLUIR para confirmar:</label>
+        <input type="text" id="confirmacaoExclusao" placeholder="Digite EXCLUIR">
+
+        <button type="button" id="cancelar">Cancelar</button>
+        <button type="button" id="excluirConta"  disabled>Excluir conta</button>
+
+        <div id="mensagem"></div>
+    </form>
+</div>
+
+
     <header>
         <h1 data-i18n="configuracoes.titulo">Configurações</h1>
         <p data-i18n="configuracoes.descricao">Gerencie preferências e informações da sua conta</p>
@@ -22,7 +49,7 @@
         </div>
         </a>
 
-        <div class="cards">
+        <div class="cards" id="cardExcluir">
             <i class="fa-solid fa-trash"></i>
             <h3 data-i18n="configuracoes.excluir">Excluir conta</h3>
             <p data-i18n="configuracoes.texto_excluir">Exclua permanentemente sua conta e todos os seus dados</p>

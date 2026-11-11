@@ -15,5 +15,6 @@ router.get("/admin", auth, authorize('ADMIN'), userController.pegarInformacoes)
 router.get("/perfil/:usuarioId", userController.buscarPerfilPublico)
 router.put("/alterar_senha", auth, userController.alterarSenha)
 router.put("/atualizar_foto_perfil", auth, uploadPerfil.single("fotoPerfil"), userController.atualizarFotoPerfil)
+router.delete("/deletar_usuario", auth, userController.deletarUsuario)
 
 module.exports = router

@@ -4,6 +4,7 @@ const userService = require('../service/userService')
 const AppError = require('../utils/AppError')
 const { registerSchema } = require('../validator/userValidator')
 const uploadImagem = require('../service/cloudinaryService');
+const { success } = require('zod');
 
 exports.createUser = async(req, res, next) => {
     try{
@@ -204,3 +205,21 @@ exports.atualizarFotoPerfil = async (req, res, next) => {
         next(erro);
     }
 };
+
+exports.deletarUsuario = async(req, res, next) => {
+    try{
+        const usuarioId = req.usuario.id;
+
+        const result = await userService.deletarUsuario(
+            usuarioId
+        )
+
+        return res.status(200).json({
+            success: "Usuário deletado com sucesso",
+            data: result 
+        })
+    }
+    catch(erro){
+        next(erro)
+    }
+} 
