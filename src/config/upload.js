@@ -1,27 +1,23 @@
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
+const multer = require('multer');
 
-
-const uploadDir = path.join(__dirname, "../upload")
-
-if(!fs.existsSync(uploadDir)){
-    fs.mkdirSync(uploadDir)
-}
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir)
-    },
-
-    filename: (req, file, cb) => {
-        const nomeArquivo = Date.now() + path.extname(file.originalname)
-        cb(null, nomeArquivo)
-    }
-})
+const storage = multer.memoryStorage();
 
 const upload = multer({
-    storage
-})
+    storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    },
+    fileFilter: (req, file, cb) => {
+        if (
+            file.mimetype === 'image/jpeg' ||
+            file.mimetype === 'image/png' ||
+            file.mimetype === 'image/webp'
+        ) {
+            cb(null, true);
+        } else {
+            cb(new Error('Formato de imagem não permitido'));
+        }
+    }
+});
 
-module.exports = upload
+module.exports = upload;

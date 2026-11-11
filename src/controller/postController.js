@@ -1,31 +1,33 @@
 const postService = require('../service/postService')
 const { Prisma } = require('@prisma/client')
+const uploadImagem = require('../service/cloudinaryService')
 
-exports.criarPost = async(req, res, next) => {
-    try{
-        const { titulo, descricao } = req.body
+exports.criarPost = async (req, res, next) => {
+    try {
+        const { titulo, descricao } = req.body;
 
-        const imagem = req.file ? req.file.filename : null
+        const imagem = req.file
+            ? (await uploadImagem(req.file.buffer, 'publicacoes')).url
+            : null;
 
-        const usuarioId = req.usuario.id
+        const usuarioId = req.usuario.id;
 
         const result = await postService.criarPost(
-            titulo, 
-            descricao, 
+            titulo,
+            descricao,
             imagem,
             usuarioId
-        )
+        );
 
         res.status(201).json({
             success: true,
             data: result
-        })
-    }
+        });
 
-    catch(error) {
-        next(error)
+    } catch (error) {
+        next(error);
     }
-}
+};
 
 exports.pegarPosts = async(req, res, next) => {
     try{
