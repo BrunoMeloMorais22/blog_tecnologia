@@ -77,3 +77,11 @@ exports.deletarPost = async(publicacaoId) => {
         }
     })
 }
+
+exports.buscarPorId = async(postId) => {
+    return await prisma.publicacao.findUnique({
+        where: {
+            id: postId
+        }
+    })
+}

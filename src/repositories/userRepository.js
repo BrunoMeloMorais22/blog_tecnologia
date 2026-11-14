@@ -15,11 +15,28 @@ exports.create = async(data) => {
 }
 
 exports.findPostsByUserId = async(usuarioId) => {
-    return await prisma.publicacao.findMany({
-        where: {
-            usuarioId: usuarioId
-        }
-    })
+    const inicio = performance.now()
+
+    try{
+        const posts = await prisma.publicacao.findMany({
+            where: {
+                usuarioId: usuarioId
+            }
+        })
+
+        const fim = performance.now()
+
+        console.log(
+            `[PERFORMANCE] findPostsByUserId: ${(fim - inicio).toFixed(2)} ms`
+        );
+
+        return posts
+    }
+
+    catch(erro) {
+        throw erro()
+        
+    }
 }
 
 exports.findByUsername = async function (username) {

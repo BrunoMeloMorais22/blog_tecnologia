@@ -14,7 +14,7 @@ document.getElementById("formAlterarSenha").addEventListener("submit", async fun
     }
 
     const response = await fetch(`${API_URL}/users/alterar_senha`, {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
@@ -29,7 +29,7 @@ document.getElementById("formAlterarSenha").addEventListener("submit", async fun
         mensagem.style.color = "green"
 
         setTimeout(() => {
-            window.location.href = "/configuracoes"
+            window.location.href = "/login"
         }, 1500)
     } else{
         if(resultado.errors){

@@ -180,6 +180,7 @@ function obterUsuarioLogado() {
 const usuarioLogadoId = obterUsuarioLogado();
 
 
+
 async function carregarPost() {
     const headers = {};
 
@@ -191,119 +192,278 @@ async function carregarPost() {
         headers
     });
 
+    if (!response.ok) {
+        throw new Error("Erro ao carregar publicações");
+    }
+
     const resultado = await response.json();
 
     const container = document.getElementById("cards");
 
-    container.innerHTML = "";
+    container.textContent = "";
+
+    function criarElemento(tag, classe, texto) {
+        const elemento = document.createElement(tag);
+
+        if (classe) {
+            elemento.className = classe;
+        }
+
+        if (texto !== undefined) {
+            elemento.textContent = texto;
+        }
+
+        return elemento;
+    }
+
+    function obterImagem(caminho, pasta, fallback) {
+        if (!caminho || typeof caminho !== "string") {
+            return fallback;
+        }
+
+        if (caminho.startsWith("https://")) {
+            try {
+                const url = new URL(caminho);
+
+                if (url.protocol === "https:") {
+                    return url.href;
+                }
+            } catch {
+                return fallback;
+            }
+
+            return fallback;
+        }
+
+
+        if (
+            caminho.includes("/") ||
+            caminho.includes("\\") ||
+            caminho === "." ||
+            caminho === ".."
+        ) {
+            return fallback;
+        }
+
+        return `${API_URL}/upload/${pasta}/${encodeURIComponent(caminho)}`;
+    }
 
     resultado.data.forEach(publicacao => {
+        const postId = Number(publicacao.id);
+        const usuarioId = Number(publicacao.usuarioId);
+
+        if (
+            !Number.isSafeInteger(postId) ||
+            postId <= 0 ||
+            !Number.isSafeInteger(usuarioId) ||
+            usuarioId <= 0
+        ) {
+            return;
+        }
+
         const donoDoPost =
             usuarioLogadoId !== null &&
-            Number(publicacao.usuarioId) === Number(usuarioLogadoId);
+            usuarioId === Number(usuarioLogadoId);
 
-        const fotoPerfil = publicacao.usuario.fotoPerfil
-    ? (
-        publicacao.usuario.fotoPerfil.startsWith("https://")
-            ? publicacao.usuario.fotoPerfil
-            : `${API_URL}/upload/perfis/${publicacao.usuario.fotoPerfil}`
-    )
-    : "../img/fundojpg.jpg";
+  
+        const card = criarElemento("div", "card");
 
-        container.innerHTML += `
-            <div class="card">
 
-                <div class="menu-container">
+        const menuContainer = criarElemento("div", "menu-container");
 
-                    ${donoDoPost ? `
-                        <div class="menu-acoes">
 
-                            <button
-                                class="menu-btn"
-                                onclick="abrirMenu(event, ${publicacao.id})">
-                                ⋮
-                            </button>
+        if (donoDoPost) {
+            const menuAcoes = criarElemento("div", "menu-acoes");
 
-                            <div class="menu-opcoes" id="menu-${publicacao.id}">
+            const menuBtn = criarElemento("button", "menu-btn", "⋮");
+            menuBtn.type = "button";
 
-                                <button
-                                    id="editar-${publicacao.id}"
-                                    onclick="habilitarEdicao(${publicacao.id})">
-                                    ✏️ Editar Post
-                                </button>
+            menuBtn.addEventListener("click", event => {
+                abrirMenu(event, postId);
+            });
 
-                                <button onclick="deletar_post(${publicacao.id})">
-                                    🗑️ Deletar Post
-                                </button>
+            const menuOpcoes = criarElemento("div", "menu-opcoes");
+            menuOpcoes.id = `menu-${postId}`;
 
-                            </div>
-                        </div>
-                    ` : ""}
+            const botaoEditar = criarElemento(
+                "button",
+                "",
+                "✏️ Editar Post"
+            );
 
-                    <a href="/perfil?id=${publicacao.usuarioId}"
-                       class="menu-btn-user"
-                       title="Acessar perfil">
+            botaoEditar.type = "button";
+            botaoEditar.id = `editar-${postId}`;
 
-                        <img
-                            class="foto-perfil-post"
-                            src="${fotoPerfil}"
-                            alt="Foto de perfil">
+            botaoEditar.addEventListener("click", () => {
+                habilitarEdicao(postId);
+            });
 
-                    </a>
+            const botaoDeletar = criarElemento(
+                "button",
+                "",
+                "🗑️ Deletar Post"
+            );
 
-                </div>
+            botaoDeletar.type = "button";
 
-                ${publicacao.imagem ? `
-    <img
-        class="imagem-post"
-        src="${publicacao.imagem.startsWith("https://")
-            ? publicacao.imagem
-            : `${API_URL}/upload/${publicacao.imagem}`}"
-        alt="Imagem da publicação"
-    >
-` : ""}
+            botaoDeletar.addEventListener("click", () => {
+                deletar_post(postId);
+            });
 
-                <p>${publicacao.usuario.nome}</p>
+            menuOpcoes.appendChild(botaoEditar);
+            menuOpcoes.appendChild(botaoDeletar);
 
-                <h3>${publicacao.titulo}</h3>
+            menuAcoes.appendChild(menuBtn);
+            menuAcoes.appendChild(menuOpcoes);
 
-                <p id="descricao-${publicacao.id}">
-                    ${publicacao.descricao}
-                </p>
+            menuContainer.appendChild(menuAcoes);
+        }
 
-                <div class="card-acoes">
+        const linkPerfil = criarElemento("a", "menu-btn-user");
 
-                    <button id="curtida-${publicacao.id}" onclick="curtir(${publicacao.id})">
-                        <i class="${publicacao.curtidoPorMim ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                        Curtir
-                    </button>
+        linkPerfil.href = `/perfil?id=${usuarioId}`;
+        linkPerfil.title = "Acessar perfil";
 
-                    <button onclick="abrirComentarios(${publicacao.id})">
-                        <i class="fa-solid fa-comment"></i>
-                        COMENTAR
-                    </button>
+        const fotoPerfil = criarElemento("img", "foto-perfil-post");
 
-                </div>
+        fotoPerfil.src = obterImagem(
+            publicacao.usuario?.fotoPerfil,
+            "perfis",
+            "../img/fundojpg.jpg"
+        );
 
-                <div class="comentarios"
-                     id="comentarios-${publicacao.id}"
-                     style="display: none;">
+        fotoPerfil.alt = "Foto de perfil";
 
-                    <input
-                        type="text"
-                        id="comentario-${publicacao.id}"
-                        placeholder="Digite um comentário...">
+        linkPerfil.appendChild(fotoPerfil);
+        menuContainer.appendChild(linkPerfil);
 
-                    <button onclick="enviarComentario(${publicacao.id})">
-                        Comentar
-                    </button>
+        card.appendChild(menuContainer);
 
-                </div>
+        if (publicacao.imagem) {
+            const imagemPost = criarElemento("img", "imagem-post");
 
-                <div id="lista-comentarios-${publicacao.id}"></div>
+            imagemPost.src = obterImagem(
+                publicacao.imagem,
+                "",
+                ""
+            );
 
-            </div>
-        `;
+            imagemPost.alt = "Imagem da publicação";
+
+            imagemPost.addEventListener("error", () => {
+                imagemPost.remove();
+            });
+
+            card.appendChild(imagemPost);
+        }
+
+        const nome = criarElemento(
+            "p",
+            "",
+            publicacao.usuario?.nome || "Usuário"
+        );
+
+
+        const titulo = criarElemento(
+            "h3",
+            "",
+            publicacao.titulo || ""
+        );
+
+        const descricao = criarElemento(
+            "p",
+            "",
+            publicacao.descricao || ""
+        );
+
+        descricao.id = `descricao-${postId}`;
+
+        card.appendChild(nome);
+        card.appendChild(titulo);
+        card.appendChild(descricao);
+
+
+        const cardAcoes = criarElemento("div", "card-acoes");
+
+
+        const botaoCurtir = criarElemento("button");
+        botaoCurtir.id = `curtida-${postId}`;
+        botaoCurtir.type = "button";
+
+        const iconeCurtir = criarElemento("i");
+
+        iconeCurtir.className =
+            `${publicacao.curtidoPorMim ? "fa-solid" : "fa-regular"} fa-heart`;
+
+        botaoCurtir.appendChild(iconeCurtir);
+        botaoCurtir.appendChild(document.createTextNode(" Curtir"));
+
+        botaoCurtir.addEventListener("click", () => {
+            curtir(postId);
+        });
+
+
+        const botaoComentarios = criarElemento("button");
+        botaoComentarios.type = "button";
+
+        const iconeComentario = criarElemento(
+            "i",
+            "fa-solid fa-comment"
+        );
+
+        botaoComentarios.appendChild(iconeComentario);
+        botaoComentarios.appendChild(
+            document.createTextNode(" COMENTAR")
+        );
+
+        botaoComentarios.addEventListener("click", () => {
+            abrirComentarios(postId);
+        });
+
+        cardAcoes.appendChild(botaoCurtir);
+        cardAcoes.appendChild(botaoComentarios);
+
+        card.appendChild(cardAcoes);
+
+
+      const comentarios = criarElemento("div", "comentarios");
+
+comentarios.id = `comentarios-${postId}`;
+comentarios.style.display = "none";
+
+const inputComentario = criarElemento("input");
+
+inputComentario.type = "text";
+inputComentario.id = `comentario-${postId}`;
+inputComentario.placeholder = "Digite um comentário...";
+
+const botaoEnviarComentario = criarElemento(
+    "button",
+    "",
+    "Comentar"
+);
+
+botaoEnviarComentario.type = "button";
+
+botaoEnviarComentario.addEventListener("click", () => {
+    enviarComentario(postId);
+});
+
+const listaComentarios = criarElemento("div");
+
+listaComentarios.id = `lista-comentarios-${postId}`;
+
+comentarios.appendChild(inputComentario);
+comentarios.appendChild(botaoEnviarComentario);
+comentarios.appendChild(listaComentarios);
+
+card.appendChild(comentarios);
+container.appendChild(card);
+
+carregarComentarios(postId).catch(erro => {
+    console.error("Erro ao carregar comentários:", erro);
+});
+
     });
 }
 

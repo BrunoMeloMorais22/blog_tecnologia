@@ -1,9 +1,9 @@
 require('dotenv').config()
 const newrelic = require('newrelic')
 const http = require('http')
-const { Server } = require('socket.io')
 
 const app = require('./app')
+const { inicializarSocket } = require('./src/config/socket')
 
 newrelic.recordLogEvent({
     message: 'Teste de log do Blog API',
@@ -12,17 +12,7 @@ newrelic.recordLogEvent({
 
 const server = http.createServer(app)
 
-const io = new Server(server)
-
-io.on("connection", (socket) => {
-    socket.on("novo_comentario", (comentario) => {
-        io.emit("comentario_recebido", comentario)
-    })
-
-    socket.on("disconnect", () => {
-        console.log("Usuário desconectado")
-    })
-})
+inicializarSocket(server)
 
 const PORT = process.env.PORT || 3000
 

@@ -2,20 +2,45 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 
-exports.criar = async(mensagem, postId, usuarioId) => {
+exports.criar = async (mensagem, postId, usuarioId) => {
     return await prisma.comentario.create({
-        data:{
-            mensagem, 
-            postId, 
-            usuarioId
+        data: {
+            mensagem,
+
+            post: {
+                connect: {
+                    id: postId
+                }
+            },
+
+            usuario: {
+                connect: {
+                    id: usuarioId
+                }
+            }
         }
     })
 }
 
-exports.buscarPorId = async(postId) => {
+exports.buscarPorPost = async(postId) => {
     return await prisma.comentario.findMany({
         where: {
-            postId: postId
+            postId
+        },
+
+        orderBy: {
+            criadoEm: "asc"
+        },
+
+        include: {
+            usuario: {
+                select: {
+                    id: true,
+                    nome: true,
+                    username: true,
+                    fotoPerfil: true
+                }
+            }
         }
     })
 }

@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const userRoutes = require('./src/routes/userRoutes')
 const postRoutes = require('./src/routes/postRoutes')
+const commentRoutes = require("./src/routes/commentRoutes")
 const errorHandler = require('./src/middleware/errorHandler')
 const app = express();
 
@@ -14,6 +15,7 @@ app.use("/upload", express.static(path.join(__dirname, "src", "upload")))
 
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
+app.use("/comment", commentRoutes)
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/index.html"))

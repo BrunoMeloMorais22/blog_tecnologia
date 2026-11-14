@@ -6,6 +6,7 @@ const token = localStorage.getItem("token");
 const params = new URLSearchParams(window.location.search);
 const usuarioId = Number(params.get("id"));
 const perfilPublico = params.has("id");
+let perfilEmEdicao = false;
 
 
 async function carregarInformacoes() {
@@ -101,13 +102,13 @@ async function carregarInformacoes() {
 }
 
 
-async function carregarPost() {
 
+
+async function carregarPost() {
     try {
         let publicacoes;
 
         if (perfilPublico) {
-            
             const response = await fetch(
                 `${API_URL}/users/perfil/${usuarioId}`
             );
@@ -148,24 +149,67 @@ async function carregarPost() {
             return;
         }
 
-        container.innerHTML = "";
+        container.replaceChildren();
+
+        if (!Array.isArray(publicacoes)) {
+            console.error("Formato de publicações inválido.");
+            return;
+        }
 
         publicacoes.forEach(publicacao => {
             const card = document.createElement("div");
             card.classList.add("post-card");
 
-            card.innerHTML = `
-                <h3>${publicacao.titulo}</h3>
+            const titulo = document.createElement("h3");
+            titulo.textContent = publicacao.titulo || "";
 
-                <p>${publicacao.descricao}</p>
+            const descricao = document.createElement("p");
+            descricao.textContent = publicacao.descricao || "";
 
-                ${publicacao.imagem ? `
-                    <img
-                        src="${API_URL}/upload/${publicacao.imagem}"
-                        alt="Imagem da publicação"
-                    >
-                ` : ""}
-            `;
+            card.appendChild(titulo);
+            card.appendChild(descricao);
+
+            if (publicacao.imagem) {
+                const imagem = document.createElement("img");
+                const imagemUrl = publicacao.imagem;
+
+                try {
+                    const url = new URL(imagemUrl, API_URL);
+
+                    if (
+                        url.protocol === "https:" &&
+                        url.hostname === "res.cloudinary.com"
+                    ) {
+                        imagem.src = url.href;
+
+                    } else if (
+                        url.origin === new URL(API_URL).origin &&
+                        !imagemUrl.startsWith("https://")
+                    ) {
+                        imagem.src = url.href;
+
+                    } else {
+                        console.error("URL de imagem não permitida:", imagemUrl);
+                    }
+
+                    imagem.alt = "Imagem da publicação";
+
+                    imagem.addEventListener("error", () => {
+                        console.error(
+                            "Não foi possível carregar a imagem:",
+                            imagem.src
+                        );
+                        imagem.remove();
+                    });
+
+                    if (imagem.src) {
+                        card.appendChild(imagem);
+                    }
+
+                } catch (erro) {
+                    console.error("URL de imagem inválida:", erro);
+                }
+            }
 
             container.appendChild(card);
         });
@@ -175,6 +219,20 @@ async function carregarPost() {
     }
 }
 
+
+
+async function alternarEdicaoPerfil(){
+    if(perfilEmEdicao){
+        await editarPerfil()
+    }
+
+    else{
+        ativarEdicaoPerfil()
+        perfilEmEdicao = true
+
+        document.querySelector(".botao-editar").textContent = "Salvar perfil"
+    }
+}
 
 function ativarEdicaoPerfil() {
     const nome = document.getElementById("nome");
@@ -261,6 +319,7 @@ async function editarPerfil() {
 
             mensagem.textContent = resultado.data.message;
             mensagem.style.color = "green";
+            perfilEmEdicao = false;
 
             voltarVisualizacao();
         } else {

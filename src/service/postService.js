@@ -6,13 +6,18 @@ const logger = require('../utils/logger')
 
 
 exports.criarPost = async (titulo, descricao, imagem, usuarioId) => {
-    if (!titulo || !descricao) {
+
+    try {
+        if (!titulo || !descricao) {
         throw new AppError(
             "Os campos: titulo e descricao são obrigatórios"
         )
     }
 
-    try {
+    if(!titulo.trim() || !descricao.trim()){
+        throw new AppError("Título e descrição não podem conter apenas espaços");
+        
+    }
         const post = await postRepository.criarPost({
             titulo,
             descricao,
