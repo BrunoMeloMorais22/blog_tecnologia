@@ -1,4 +1,4 @@
-const API_URL = `http://localhost:3000`
+const API_URL = `https://blog-tecnologia-ifup.onrender.com`
 
 const token = localStorage.getItem('token')
 
