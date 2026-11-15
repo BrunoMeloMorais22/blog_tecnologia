@@ -29,9 +29,6 @@ async function enviarComentario(postId) {
 
     const resultado = await response.json()
 
-    console.log("STATUS:", response.status)
-    console.log("RESPOSTA:", resultado)
-
     if (!response.ok) {
         console.error("Erro ao salvar comentário:", resultado)
         return

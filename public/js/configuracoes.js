@@ -1,4 +1,5 @@
-const API_URL = "https://blog-tecnologia-ifup.onrender.com";
+const API_URL = `https://blog-tecnologia-ifup.onrender.com`
+
 const token = localStorage.getItem("token");
 
 const tema = document.getElementById("tema");

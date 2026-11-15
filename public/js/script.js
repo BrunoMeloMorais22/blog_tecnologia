@@ -48,16 +48,22 @@ if (tokenValido()) {
 }
 
 
-function abrirComentarios(postId) {
-    const comentarios = document.getElementById(`comentarios-${postId}`)
 
-    if(comentarios.style.display === "none"){
-        comentarios.style.display = "block"
-    }
-    else{
-        comentarios.style.display = "none"
+function abrirComentarios(postId) {
+    const comentarios = document.getElementById(`comentarios-${postId}`);
+
+    if (comentarios.style.display === "none") {
+        comentarios.style.display = "flex";
+    } else {
+        comentarios.style.display = "none";
     }
 }
+
+function fecharComentarios(postId) {
+    const comentarios = document.getElementById(`comentarios-${postId}`);
+    comentarios.style.display = "none";
+}
+
 
 function habilitarEdicao(publicacaoId) {
     const descricao = document.getElementById(`descricao-${publicacaoId}`)
@@ -430,6 +436,15 @@ async function carregarPost() {
 
 comentarios.id = `comentarios-${postId}`;
 comentarios.style.display = "none";
+const botaoFechar = criarElemento("button", "modal-fechar", "×");
+
+botaoFechar.type = "button";
+
+botaoFechar.addEventListener("click", () => {
+    fecharComentarios(postId);
+});
+
+comentarios.appendChild(botaoFechar);
 
 const inputComentario = criarElemento("input");
 

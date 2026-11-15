@@ -1,5 +1,6 @@
 const API_URL = `https://blog-tecnologia-ifup.onrender.com`
 
+
 const token = localStorage.getItem('token')
 
 document.getElementById("postFormulario").addEventListener("submit", async function (event) {

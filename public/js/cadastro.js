@@ -1,5 +1,6 @@
 
 const API_URL = `https://blog-tecnologia-ifup.onrender.com`
+
 const mensagem = document.getElementById("mensagem")
 
 document.getElementById("cadastroFormulario").addEventListener("submit", async function(event) {
