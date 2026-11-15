@@ -846,3 +846,10 @@ button > a {
     color: #e63946 !important;
     transform: none !important;
 }
+
+@media (max-width: 600px) {
+    .comentarios {
+        width: 90vw;
+        max-width: 90vw;
+    }
+}
