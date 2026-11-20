@@ -853,3 +853,264 @@ button > a {
         max-width: 90vw;
     }
 }
+
+
+.explorar-section {
+    background: #ffffff;
+    padding: 65px 30px 70px;
+}
+
+.explorar-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.explorar-header h2 {
+    font-size: 32px;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.explorar-header p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+.categorias-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.categorias-section {
+    background:
+        linear-gradient(
+            rgba(5, 10, 30, 0.65),
+            rgba(5, 10, 30, 0.75)
+        ),
+        url("../img/comunidade-tech.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 70px 8%;
+    border-radius: 12px;
+}
+
+.categoria-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.categoria-card:hover {
+    transform: translateY(-5px);
+    border-color: #2563eb;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.categoria-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 21px;
+}
+
+.backend {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.frontend {
+    background: #ede9fe;
+    color: #7c3aed;
+}
+
+.ia {
+    background: #fce7f3;
+    color: #db2777;
+}
+
+.banco {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.devops {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.seguranca {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.categoria-card h3 {
+    color: #0f172a;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.categoria-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.categoria-card span {
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+.categoria-card span i {
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.categoria-card:hover span i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 900px) {
+    .categorias-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .explorar-section {
+        padding: 45px 18px;
+    }
+
+    .explorar-header h2 {
+        font-size: 26px;
+    }
+
+    .categorias-container {
+        grid-template-columns: 1fr;
+    }
+}
+.footer {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("../img/rodape.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #fff;
+    padding: 50px 8% 20px;
+    margin-top: 70px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+.footer-about h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.footer-about h2 span {
+    color: #5b8def;
+}
+
+.footer-about p,
+.footer-community p {
+    color: #aab1c0;
+    line-height: 1.7;
+    max-width: 350px;
+}
+
+.footer-links h3,
+.footer-community h3 {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.footer-links nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: #aab1c0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #5b8def;
+    transform: translateX(4px);
+}
+
+.footer-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 11px 18px;
+    background: #3978e8;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-button:hover {
+    background: #2863c9;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid #303746;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #858e9e;
+    font-size: 13px;
+}
+
+.footer-bottom > p{
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}

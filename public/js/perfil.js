@@ -1,7 +1,6 @@
 
 const API_URL = `https://blog-tecnologia-ifup.onrender.com`
 
-
 const token = localStorage.getItem("token");
 
 const params = new URLSearchParams(window.location.search);
