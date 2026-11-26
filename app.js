@@ -4,6 +4,7 @@ const userRoutes = require('./src/routes/userRoutes')
 const postRoutes = require('./src/routes/postRoutes')
 const commentRoutes = require("./src/routes/commentRoutes")
 const errorHandler = require('./src/middleware/errorHandler')
+const categoriaRoutes = require('./src/routes/categoriaRoutes')
 const app = express();
 
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use("/upload", express.static(path.join(__dirname, "src", "upload")))
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
 app.use("/comment", commentRoutes)
+app.use("/categoria", categoriaRoutes)
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/html/index.html"))

@@ -4,7 +4,7 @@ const uploadImagem = require('../service/cloudinaryService')
 
 exports.criarPost = async (req, res, next) => {
     try {
-        const { titulo, descricao } = req.body;
+        const { titulo, descricao, categoriaId } = req.body;
 
         const imagem = req.file
             ? (await uploadImagem(req.file.buffer, 'publicacoes')).url
@@ -16,7 +16,8 @@ exports.criarPost = async (req, res, next) => {
             titulo,
             descricao,
             imagem,
-            usuarioId
+            usuarioId,
+            categoriaId
         );
 
         res.status(201).json({

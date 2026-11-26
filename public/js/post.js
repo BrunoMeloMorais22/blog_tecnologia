@@ -1,4 +1,4 @@
-const API_URL = `https://blog-tecnologia-ifup.onrender.com`
+const API_URL = `http://localhost:3000`
 
 
 const token = localStorage.getItem('token')
@@ -39,3 +39,26 @@ document.getElementById("postFormulario").addEventListener("submit", async funct
         mensagem.style.color = "red"
     }
 })
+
+async function carregarCategorias() {
+    const response = await fetch(`${API_URL}/categoria/`)
+
+    if (!response.ok) {
+        throw new Error("Erro ao carregar categorias")
+    }
+
+    const resposta = await response.json()
+
+
+    const select = document.getElementById("categoria")
+
+    resposta.data.forEach(categoria => {
+        const option = document.createElement("option")
+        option.value = categoria.id
+
+        option.textContent = categoria.nome
+        select.appendChild(option)
+    });
+}
+
+carregarCategorias()

@@ -443,7 +443,13 @@ botaoFechar.type = "button";
 botaoFechar.addEventListener("click", () => {
     fecharComentarios(postId);
 });
+const categoria = criarElemento(
+    "span",
+    "categoria-post",
+    publicacao.categoria?.nome || "Sem categoria"
+);
 
+card.appendChild(categoria);
 comentarios.appendChild(botaoFechar);
 
 const inputComentario = criarElemento("input");

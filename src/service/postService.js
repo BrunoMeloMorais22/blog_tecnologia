@@ -5,14 +5,20 @@ const AppError = require('../utils/AppError')
 const logger = require('../utils/logger')
 
 
-exports.criarPost = async (titulo, descricao, imagem, usuarioId) => {
+exports.criarPost = async (titulo, descricao, imagem, usuarioId, categoriaId) => {
 
     try {
-        if (!titulo || !descricao) {
-        throw new AppError(
-            "Os campos: titulo e descricao são obrigatórios"
-        )
-    }
+
+        if (!titulo || !descricao || !categoriaId) {
+            throw new AppError(
+                "Os campos: titulo, descricao e categoria são obrigatórios"
+            )
+        }
+
+        const categoriaIdNumero = Number(categoriaId)
+        if (!Number.isInteger(categoriaIdNumero) || categoriaIdNumero <= 0) {
+            throw new AppError("Categoria inválida", 400)
+        }
 
     if(!titulo.trim() || !descricao.trim()){
         throw new AppError("Título e descrição não podem conter apenas espaços");
@@ -22,7 +28,8 @@ exports.criarPost = async (titulo, descricao, imagem, usuarioId) => {
             titulo,
             descricao,
             imagem,
-            usuarioId
+            usuarioId,
+            categoriaId: categoriaIdNumero
         })
 
         return {
